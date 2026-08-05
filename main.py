@@ -63,6 +63,15 @@ while running:
 
  elif choice == "2":
     print("View Student Selector")
+    if students == []:
+      print("No Students Found")
+    else:
+      for student in students:
+        print(f"ID:{student.student_id}")
+        print(f"Name:{student.name}")
+        print(f"Course:{student.course}")
+        print(f"Age:{student.age}")
+    
  elif choice == "3":
     print("Thanks for using Student Management System")
     running = False

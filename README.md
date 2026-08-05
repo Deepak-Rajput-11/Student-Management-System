@@ -22,6 +22,13 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Stored Student objects in a list
 - Exit option
 
+### Day 3
+
+- View Students feature
+- Display student details using for loop
+- Empty list validation
+- Formatted output using f-strings
+
 ## Technologies
 
 - Python
