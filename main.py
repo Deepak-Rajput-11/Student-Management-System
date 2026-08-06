@@ -1,30 +1,6 @@
 from student import Student
 students = []
 
-
-student1 = Student(
-    "SMS100",
-    "Deepak",
-    "9878987898",
-    "deepak@gmail.com",
-    "BCA",
-    21,
-    "ABC",
-    "Ambala"
-)
-
-student2 = Student(
-    "SMS101",
-    "Rahul",
-    "987777898",
-    "rahul@gmail.com",
-    "BCA",
-    21,
-    "ABC",
-    "Mohali"
-)
-
-
 running = True
 
 while running:
@@ -33,7 +9,8 @@ while running:
  print("============================")
  print("1. Add Student")
  print("2. View Students")
- print("3. Exit")
+ print("3. Search Student")
+ print("4. Exit")
 
  choice = input("Enter your choice : ")
  if choice == "1":
@@ -63,16 +40,34 @@ while running:
 
  elif choice == "2":
     print("View Student Selector")
+    print()
     if students == []:
       print("No Students Found")
     else:
       for student in students:
-        print(f"ID:{student.student_id}")
-        print(f"Name:{student.name}")
-        print(f"Course:{student.course}")
-        print(f"Age:{student.age}")
-    
+        print(f"ID: {student.student_id}")
+        print(f"Name: {student.name}")
+        print(f"Course: {student.course}")
+        print(f"Age: {student.age}")
+        print()
+
  elif choice == "3":
+   search_id = input("Enter Students ID: ")
+   found = False
+
+   for student in students:
+     if student.student_id == search_id:
+        found = True
+        print(f"ID: {student.student_id}")
+        print(f"Name: {student.name}")
+        print(f"Course: {student.course}")
+        print(f"Age: {student.age}")
+        break
+   if found == False:
+     print("Student not found.")
+
+
+ elif choice == "4":
     print("Thanks for using Student Management System")
     running = False
  else:
