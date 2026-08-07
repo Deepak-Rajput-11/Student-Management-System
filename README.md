@@ -29,6 +29,25 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Empty list validation
 - Formatted output using f-strings
 
+### Day 4
+
+- Search Student feature
+- Search student using Student ID
+- Implemented search using for loop
+- Used flag variable (`found`) to detect search result
+- Optimized search using `break`
+- Display student details if found
+- Display "Student not found" message when ID does not exist
+
+### Day 5
+
+- Delete Student feature
+- Delete student using Student ID
+- Learned index-based loop using `for i in range(len(students))`
+- Used `pop()` to remove a student from the list
+- Display success message after deletion
+- Display "Student not found" when ID does not exist
+
 ## Technologies
 
 - Python
