@@ -11,8 +11,9 @@ while running:
     print("1. Add Student")
     print("2. View Students")
     print("3. Search Student")
-    print("4. Delete Student")
-    print("5. Exit")
+    print("4. Update Student")
+    print("5. Delete Student")
+    print("6. Exit")
 
     choice = input("Enter your choice : ")
 
@@ -73,6 +74,41 @@ while running:
             print("Student not found.")
 
     elif choice == "4":
+        update_id = input("Enter Student ID: ")
+        found = False
+
+        for student in students:
+            if student.student_id == update_id:
+                found = True
+
+                new_name = input("Enter new name: ")
+                student.name = new_name
+
+                new_phone_no = input("Enter new phone number: ")
+                student.phone_number = new_phone_no
+
+                new_email = input("Enter new email ID: ")
+                student.email = new_email
+
+                new_course = input("Enter new course name: ")
+                student.course = new_course
+
+                new_age = int(input("Enter new age: "))
+                student.age = new_age
+
+                new_gaurdian_name = input("Enter new gaurdian name: ")
+                student.gaurdian_name = new_gaurdian_name
+
+                new_address = input("Enter new address: ")
+                student.address = new_address
+
+                print("Student updated successfully!!!")
+                break
+
+        if found == False:
+            print("Student not found")
+
+    elif choice == "5":
         delete_id = input("Enter Student ID: ")
         found = False
 
@@ -86,7 +122,7 @@ while running:
         if found == False:
             print("Student not found.")
 
-    elif choice == "5":
+    elif choice == "6":
         print("Thanks for using Student Management System")
         running = False
 
