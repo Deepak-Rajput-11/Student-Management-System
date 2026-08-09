@@ -48,6 +48,17 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Display success message after deletion
 - Display "Student not found" when ID does not exist
 
+### Day 6
+
+- Student search by ID
+- Student deletion by ID
+- Student information update by ID
+- Updating object attributes dynamically
+- Using `for` loop with `range()`
+- Using `list.pop()` for deletion
+- Using `found` flag for search/update/delete operations
+
+
 ## Technologies
 
 - Python

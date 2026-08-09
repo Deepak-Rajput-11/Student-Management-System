@@ -24,7 +24,14 @@ while running:
         phone_number = input("Enter Phone Number: ")
         email = input("Enter Email: ")
         course = input("Enter Course Name: ")
-        age = int(input("Enter age: "))
+
+        while True:
+            try:
+                age = int(input("Enter age: "))
+                break
+            except ValueError:
+                print("Please enter a valid age.")
+
         guardian_name = input("Enter Guardian Name: ")
         address = input("Enter Address: ")
 
@@ -93,7 +100,13 @@ while running:
                 new_course = input("Enter new course name: ")
                 student.course = new_course
 
-                new_age = int(input("Enter new age: "))
+                while True:
+                    try:
+                        new_age = int(input("Enter new age: "))
+                        break
+                    except ValueError:
+                        print("Please enter a valid age.")
+
                 student.age = new_age
 
                 new_gaurdian_name = input("Enter new gaurdian name: ")
