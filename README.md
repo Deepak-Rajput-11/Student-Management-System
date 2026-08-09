@@ -58,6 +58,15 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Using `list.pop()` for deletion
 - Using `found` flag for search/update/delete operations
 
+### Day 7
+
+- Added input validation for student age
+- Learned and practically used `try` and `except`
+- Handled `ValueError` for invalid age input
+- Used `while True` to repeatedly request valid input
+- Used `break` to exit the validation loop after valid input
+- Applied age validation to both Add Student and Update Student
+- Prevented the program from crashing when invalid age is entered
 
 ## Technologies
 
