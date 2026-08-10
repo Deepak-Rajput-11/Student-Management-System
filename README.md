@@ -68,6 +68,15 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Applied age validation to both Add Student and Update Student
 - Prevented the program from crashing when invalid age is entered
 
+### Day 8
+
+- Added duplicate Student ID validation
+- Used a Boolean `duplicate` flag to track duplicate IDs
+- Searched existing students using a `for` loop
+- Prevented creation of students with duplicate IDs
+- Added an error message when a Student ID already exists
+- Improved data integrity of the Student Management System
+
 ## Technologies
 
 - Python

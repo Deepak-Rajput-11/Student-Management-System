@@ -20,34 +20,46 @@ while running:
     if choice == "1":
         print("Add Student Selector")
         student_id = input("Enter Student ID: ")
-        name = input("Enter name: ")
-        phone_number = input("Enter Phone Number: ")
-        email = input("Enter Email: ")
-        course = input("Enter Course Name: ")
 
-        while True:
-            try:
-                age = int(input("Enter age: "))
-                break
-            except ValueError:
-                print("Please enter a valid age.")
+        duplicate = False
 
-        guardian_name = input("Enter Guardian Name: ")
-        address = input("Enter Address: ")
+        for student in students:
+            if student.student_id == student_id:
+                duplicate = True
 
-        student = Student(
-            student_id,
-            name,
-            phone_number,
-            email,
-            course,
-            age,
-            guardian_name,
-            address,
-        )
+        if duplicate == False:
 
-        students.append(student)
-        print("Student added successfully!")
+            name = input("Enter name: ")
+            phone_number = input("Enter Phone Number: ")
+            email = input("Enter Email: ")
+            course = input("Enter Course Name: ")
+
+            while True:
+                try:
+                    age = int(input("Enter age: "))
+                    break
+                except ValueError:
+                    print("Please enter a valid age.")
+
+            guardian_name = input("Enter Guardian Name: ")
+            address = input("Enter Address: ")
+
+            student = Student(
+                student_id,
+                name,
+                phone_number,
+                email,
+                course,
+                age,
+                guardian_name,
+                address,
+            )
+
+            students.append(student)
+            print("Student added successfully!")
+
+        else:
+            print("Student ID already exist!")
 
     elif choice == "2":
         print("View Student Selector")
