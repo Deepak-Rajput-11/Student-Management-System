@@ -19,13 +19,23 @@ while running:
 
     if choice == "1":
         print("Add Student Selector")
-        student_id = input("Enter Student ID: ")
+
+        while True:
+            student_id = input("Enter Student ID: ")
+
+            if student_id == "":
+                print("Student ID cannot be empty.")
+            else:
+                break
 
         duplicate = False
 
         for student in students:
             if student.student_id == student_id:
                 duplicate = True
+        if duplicate == True:
+            print("Student ID already exist.")
+            continue
 
         if duplicate == False:
 

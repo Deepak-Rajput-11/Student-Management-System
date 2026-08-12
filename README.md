@@ -77,6 +77,16 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Added an error message when a Student ID already exists
 - Improved data integrity of the Student Management System
 
+### Day 9
+
+- Added Student ID input validation
+- Prevented empty Student IDs
+- Used a `while` loop to repeatedly request valid input
+- Used `if/else` to check whether the Student ID is empty
+- Used `break` to exit the validation loop when valid input is provided
+- Learned that `break` exits the current loop, not the entire program
+- Improved the reliability of the Add Student feature
+
 ## Technologies
 
 - Python
