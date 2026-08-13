@@ -33,6 +33,7 @@ while running:
         for student in students:
             if student.student_id == student_id:
                 duplicate = True
+
         if duplicate == True:
             print("Student ID already exist.")
             continue
@@ -40,9 +41,22 @@ while running:
         if duplicate == False:
 
             name = input("Enter name: ")
-            phone_number = input("Enter Phone Number: ")
-            email = input("Enter Email: ")
-            course = input("Enter Course Name: ")
+
+            while True:
+                phone_number = input("Enter Phone Number: ")
+
+                if phone_number.isdigit() and len(phone_number) == 10:
+                    break
+                else:
+                    print("Invalid phone number. Please enter 10 digits.")
+
+            while True:
+                email = input("Enter Email: ")
+
+                if "@" in email and "." in email:
+                    break
+                else:
+                    print("Invalid Email.")
 
             while True:
                 try:
@@ -51,6 +65,7 @@ while running:
                 except ValueError:
                     print("Please enter a valid age.")
 
+            course = input("Enter Course Name: ")
             guardian_name = input("Enter Guardian Name: ")
             address = input("Enter Address: ")
 

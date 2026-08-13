@@ -87,6 +87,20 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Learned that `break` exits the current loop, not the entire program
 - Improved the reliability of the Add Student feature
 
+### Day 10
+
+- Added phone number validation
+- Used `.isdigit()` to check that the phone number contains only digits
+- Used `len()` to check that the phone number contains exactly 10 digits
+- Used the `and` operator to combine multiple validation conditions
+- Added a loop to repeatedly ask for a phone number until valid input is entered
+- Added basic email validation
+- Used the `in` operator to check for `@` and `.` in an email address
+- Used `while True` and `break` for email validation
+- Tested both valid and invalid phone numbers
+- Tested both valid and invalid email addresses
+- Learned the importance of saving the file before running the latest changes
+
 ## Technologies
 
 - Python
