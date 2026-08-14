@@ -101,6 +101,16 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Tested both valid and invalid email addresses
 - Learned the importance of saving the file before running the latest changes
 
+### Day 11
+
+- Added phone number validation to Update Student
+- Added email validation to Update Student
+- Improved Search Student to display complete student details
+- Improved View Students to display complete student details
+- Added student numbering using `enumerate()`
+- Improved formatting of student information for better readability
+- Tested all changes successfully
+
 ## Technologies
 
 - Python

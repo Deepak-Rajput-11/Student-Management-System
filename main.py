@@ -93,11 +93,18 @@ while running:
         if students == []:
             print("No Students Found")
         else:
-            for student in students:
-                print(f"ID: {student.student_id}")
-                print(f"Name: {student.name}")
-                print(f"Course: {student.course}")
-                print(f"Age: {student.age}")
+            for index, student in enumerate(students, start=1):
+                print("============================")
+                print(f"Student {index}")
+                print("============================")
+                print(f"ID:            {student.student_id}")
+                print(f"Name:          {student.name}")
+                print(f"Phone_Number:  {student.phone_number}")
+                print(f"Email ID:      {student.email}")
+                print(f"Course:        {student.course}")
+                print(f"Age:           {student.age}")
+                print(f"Gaurdian_name: {student.gaurdian_name}")
+                print(f"Address:       {student.address}")
                 print()
 
     elif choice == "3":
@@ -128,10 +135,22 @@ while running:
                 new_name = input("Enter new name: ")
                 student.name = new_name
 
-                new_phone_no = input("Enter new phone number: ")
+                while True:
+                    new_phone_no = input("Enter new phone number: ")
+
+                    if new_phone_no.isdigit() and len(new_phone_no) == 10:
+                        break
+                    else:
+                        print("Invalid phone number. Please enter 10 digits.")
                 student.phone_number = new_phone_no
 
-                new_email = input("Enter new email ID: ")
+                while True:
+                    new_email = input("Enter new email ID: ")
+
+                    if "@" in new_email and "." in new_email:
+                        break
+                    else:
+                        print("Invalid Email.")
                 student.email = new_email
 
                 new_course = input("Enter new course name: ")
