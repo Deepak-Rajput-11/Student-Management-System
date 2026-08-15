@@ -111,6 +111,17 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Improved formatting of student information for better readability
 - Tested all changes successfully
 
+### Day 12
+
+- Improved duplicate Student ID validation
+- Duplicate Student IDs now ask for a new ID instead of returning to the main menu
+- Created a reusable `get_valid_phone()` function
+- Used `get_valid_phone()` in Add Student and Update Student
+- Created a reusable `get_valid_email()` function
+- Used `get_valid_email()` in Add Student and Update Student
+- Practiced using functions to avoid repeating validation code
+- Tested all validation changes successfully
+
 ## Technologies
 
 - Python

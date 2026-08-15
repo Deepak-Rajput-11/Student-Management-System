@@ -1,5 +1,26 @@
 from student import Student
 
+
+def get_valid_phone():
+    while True:
+        phone_number = input("Enter Phone Number: ")
+
+        if phone_number.isdigit() and len(phone_number) == 10:
+            return phone_number
+        else:
+            print("Invalid phone number. Please enter 10 digits.")
+
+
+def get_valid_email():
+    while True:
+        email = input("Enter Email: ")
+
+        if "@" in email and "." in email:
+            return email
+        else:
+            print("Invalid Email.")
+
+
 students = []
 
 running = True
@@ -25,66 +46,48 @@ while running:
 
             if student_id == "":
                 print("Student ID cannot be empty.")
-            else:
+                continue
+
+            duplicate = False
+
+            for student in students:
+                if student.student_id == student_id:
+                    duplicate = True
+
+            if duplicate == True:
+                print("Student ID already exist.")
+                continue
+            break
+        name = input("Enter name: ")
+
+        phone_number = get_valid_phone()
+        email = get_valid_email()
+
+        course = input("Enter Course Name: ")
+
+        while True:
+            try:
+                age = int(input("Enter age: "))
                 break
+            except ValueError:
+                print("Please enter a valid age.")
 
-        duplicate = False
+        guardian_name = input("Enter Guardian Name: ")
+        address = input("Enter Address: ")
 
-        for student in students:
-            if student.student_id == student_id:
-                duplicate = True
+        student = Student(
+            student_id,
+            name,
+            phone_number,
+            email,
+            course,
+            age,
+            guardian_name,
+            address,
+        )
 
-        if duplicate == True:
-            print("Student ID already exist.")
-            continue
-
-        if duplicate == False:
-
-            name = input("Enter name: ")
-
-            while True:
-                phone_number = input("Enter Phone Number: ")
-
-                if phone_number.isdigit() and len(phone_number) == 10:
-                    break
-                else:
-                    print("Invalid phone number. Please enter 10 digits.")
-
-            while True:
-                email = input("Enter Email: ")
-
-                if "@" in email and "." in email:
-                    break
-                else:
-                    print("Invalid Email.")
-
-            while True:
-                try:
-                    age = int(input("Enter age: "))
-                    break
-                except ValueError:
-                    print("Please enter a valid age.")
-
-            course = input("Enter Course Name: ")
-            guardian_name = input("Enter Guardian Name: ")
-            address = input("Enter Address: ")
-
-            student = Student(
-                student_id,
-                name,
-                phone_number,
-                email,
-                course,
-                age,
-                guardian_name,
-                address,
-            )
-
-            students.append(student)
-            print("Student added successfully!")
-
-        else:
-            print("Student ID already exist!")
+        students.append(student)
+        print("Student added successfully!")
 
     elif choice == "2":
         print("View Student Selector")
@@ -135,22 +138,12 @@ while running:
                 new_name = input("Enter new name: ")
                 student.name = new_name
 
-                while True:
-                    new_phone_no = input("Enter new phone number: ")
-
-                    if new_phone_no.isdigit() and len(new_phone_no) == 10:
-                        break
-                    else:
-                        print("Invalid phone number. Please enter 10 digits.")
+                new_phone_no = get_valid_phone()
                 student.phone_number = new_phone_no
 
-                while True:
-                    new_email = input("Enter new email ID: ")
+                new_email = get_valid_email()
+                student.email = new_email
 
-                    if "@" in new_email and "." in new_email:
-                        break
-                    else:
-                        print("Invalid Email.")
                 student.email = new_email
 
                 new_course = input("Enter new course name: ")
