@@ -21,6 +21,14 @@ def get_valid_email():
             print("Invalid Email.")
 
 
+def find_student(student_id):
+    for student in students:
+        if student.student_id == student_id:
+            return student
+
+    return None
+
+
 students = []
 
 running = True
@@ -112,77 +120,68 @@ while running:
 
     elif choice == "3":
         search_id = input("Enter Student ID: ")
-        found = False
 
-        for student in students:
-            if student.student_id == search_id:
-                found = True
-                print(f"ID: {student.student_id}")
-                print(f"Name: {student.name}")
-                print(f"Course: {student.course}")
-                print(f"Age: {student.age}")
-                print()
-                break
+        student = find_student(search_id)
 
-        if found == False:
+        if student is not None:
+            print(f"ID: {student.student_id}")
+            print(f"Name: {student.name}")
+            print(f"Course: {student.course}")
+            print(f"Age: {student.age}")
+            print()
+        else:
             print("Student not found.")
 
     elif choice == "4":
         update_id = input("Enter Student ID: ")
-        found = False
+        student = find_student(update_id)
 
-        for student in students:
-            if student.student_id == update_id:
-                found = True
+        if student is not None:
+            new_name = input("Enter new name: ")
+            student.name = new_name
 
-                new_name = input("Enter new name: ")
-                student.name = new_name
+            new_phone_no = get_valid_phone()
+            student.phone_number = new_phone_no
 
-                new_phone_no = get_valid_phone()
-                student.phone_number = new_phone_no
+            new_email = get_valid_email()
+            student.email = new_email
 
-                new_email = get_valid_email()
-                student.email = new_email
+            new_course = input("Enter new course name: ")
+            student.course = new_course
 
-                student.email = new_email
+            while True:
+                try:
+                    new_age = int(input("Enter new age: "))
+                    break
+                except ValueError:
+                    print("Please enter a valid age.")
 
-                new_course = input("Enter new course name: ")
-                student.course = new_course
+            student.age = new_age
 
-                while True:
-                    try:
-                        new_age = int(input("Enter new age: "))
-                        break
-                    except ValueError:
-                        print("Please enter a valid age.")
+            new_gaurdian_name = input("Enter new gaurdian name: ")
+            student.gaurdian_name = new_gaurdian_name
 
-                student.age = new_age
+            new_address = input("Enter new address: ")
+            student.address = new_address
 
-                new_gaurdian_name = input("Enter new gaurdian name: ")
-                student.gaurdian_name = new_gaurdian_name
+            print("Student updated successfully!!!")
 
-                new_address = input("Enter new address: ")
-                student.address = new_address
-
-                print("Student updated successfully!!!")
-                break
-
-        if found == False:
+        else:
             print("Student not found")
 
     elif choice == "5":
-        delete_id = input("Enter Student ID: ")
-        found = False
+        while True:
+            delete_id = input("Enter Student ID: ")
 
-        for i in range(len(students)):
-            if students[i].student_id == delete_id:
-                found = True
-                students.pop(i)
+            student = find_student(delete_id)
+
+            if student is not None:
+                students.remove(student)
                 print("Student deleted successfully!")
                 break
 
-        if found == False:
-            print("Student not found.")
+            else:
+                print("Student not found. Please enter a valid Student ID.")
 
     elif choice == "6":
         print("Thanks for using Student Management System")
