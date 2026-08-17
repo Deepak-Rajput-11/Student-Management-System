@@ -122,6 +122,16 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Practiced using functions to avoid repeating validation code
 - Tested all validation changes successfully
 
+### Day 13
+
+- Created a reusable `find_student()` function
+- Used `find_student()` in Search Student
+- Used `find_student()` in Update Student
+- Used `find_student()` in Delete Student
+- Removed repeated student-search loops from the program
+- Improved Delete Student to ask again when an invalid Student ID is entered
+- Tested Add, View, Search, Update, and Delete operations successfully
+
 ## Technologies
 
 - Python
