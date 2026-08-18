@@ -4,7 +4,7 @@
 
 A Python-based Student Management System built from scratch as part of my Software Engineering learning journey. This project focuses on applying Object-Oriented Programming (OOP), Python fundamentals, and software development best practices.
 
-## Feature Completed
+## Features Completed
 
 ### Day 1
 
@@ -132,11 +132,45 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Improved Delete Student to ask again when an invalid Student ID is entered
 - Tested Add, View, Search, Update, and Delete operations successfully
 
+### Day 14
+
+- Refactored the Student Management System using functions
+- Created `add_student()` for adding students
+- Created `view_students()` for displaying students
+- Created `search_student()` for searching students
+- Created `update_student()` for updating student details
+- Created `delete_student()` for deleting students
+- Created `display_student()` to avoid repeated student display code
+- Reused `find_student()` across Search, Update, and Delete
+- Reused phone and email validation functions
+- Simplified the main menu to call dedicated functions
+- Tested the complete Student Management System after refactoring
+
+### Day 15
+
+- Added reusable `get_valid_name()` function
+- Added name validation to prevent empty or space-only names
+- Added reusable `get_valid_age()` function
+- Added age range validation (5–100)
+- Added reusable `get_valid_course()` function
+- Added course validation to prevent empty or space-only courses
+- Added reusable `get_valid_text()` function for Guardian Name and Address
+- Improved email validation using `startswith()` and `endswith()`
+- Improved Student ID validation to reject empty or space-only IDs
+- Reused validation functions in both Add Student and Update Student
+- Added custom prompts for Add and Update operations
+- Improved Search, Update, and Delete to handle an empty student list
+- Reused `find_student()` for duplicate Student ID checking
+- Improved overall input validation and program reliability
+- Tested all menu options and validation cases successfully
+
 ## Technologies
 
 - Python
-- Object-Oriented-programming(OOP)
+- Object-Oriented Programming(OOP)
 
 ## Status
 
+- Terminal version completed
+- SQLite database integration planned next
 - Project in Progress

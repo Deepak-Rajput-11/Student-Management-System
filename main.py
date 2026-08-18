@@ -1,9 +1,19 @@
 from student import Student
 
 
-def get_valid_phone():
+def get_valid_name(prompt):
     while True:
-        phone_number = input("Enter Phone Number: ")
+        name = input(prompt)
+
+        if name.strip() == "":
+            print("Name cannot be empty.")
+        else:
+            return name
+
+
+def get_valid_phone(prompt):
+    while True:
+        phone_number = input(prompt)
 
         if phone_number.isdigit() and len(phone_number) == 10:
             return phone_number
@@ -11,14 +21,61 @@ def get_valid_phone():
             print("Invalid phone number. Please enter 10 digits.")
 
 
-def get_valid_email():
+def get_valid_email(prompt):
     while True:
-        email = input("Enter Email: ")
+        email = input(prompt)
 
-        if "@" in email and "." in email:
-            return email
-        else:
+        if "@" not in email:
+            print("Email must contain @.")
+            continue
+
+        if "." not in email:
+            print("Email must contain .")
+            continue
+
+        if email.startswith("@") or email.endswith("@"):
             print("Invalid Email.")
+            continue
+
+        if email.startswith(".") or email.endswith("."):
+            print("Invalid Email.")
+            continue
+
+        return email
+
+
+def get_valid_age(prompt):
+    while True:
+        try:
+            age = int(input(prompt))
+
+            if 5 <= age <= 100:
+                return age
+            else:
+                print("Age must be between 5 and 100.")
+
+        except ValueError:
+            print("Please enter a valid age.")
+
+
+def get_valid_course(prompt):
+    while True:
+        course = input(prompt)
+
+        if course.strip() == "":
+            print("Course name cannot be empty.")
+        else:
+            return course
+
+
+def get_valid_text(prompt):
+    while True:
+        value = input(prompt)
+
+        if value.strip() == "":
+            print("This field cannot be empty.")
+        else:
+            return value
 
 
 def find_student(student_id):
@@ -36,7 +93,7 @@ def display_student(student):
     print(f"Email ID:      {student.email}")
     print(f"Course:        {student.course}")
     print(f"Age:           {student.age}")
-    print(f"Gaurdian_name: {student.gaurdian_name}")
+    print(f"Guardian_name: {student.guardian_name}")
     print(f"Address:       {student.address}")
     print()
 
@@ -45,38 +102,27 @@ def add_student():
     while True:
         student_id = input("Enter Student ID: ")
 
-        if student_id == "":
+        if student_id.strip() == "":
             print("Student ID cannot be empty.")
             continue
 
-        duplicate = False
-
-        for student in students:
-            if student.student_id == student_id:
-                duplicate = True
-
-        if duplicate == True:
-            print("Student ID already exist.")
+        if find_student(student_id) is not None:
+            print("Student ID already exists.")
             continue
 
         break
 
-    name = input("Enter name: ")
+    name = get_valid_name("Enter name: ")
 
-    phone_number = get_valid_phone()
-    email = get_valid_email()
+    phone_number = get_valid_phone("Enter Phone Number: ")
+    email = get_valid_email("Enter Email: ")
 
-    course = input("Enter Course Name: ")
+    course = get_valid_course("Enter Course Name: ")
 
-    while True:
-        try:
-            age = int(input("Enter age: "))
-            break
-        except ValueError:
-            print("Please enter a valid age.")
+    age = get_valid_age("Enter age: ")
 
-    guardian_name = input("Enter Guardian Name: ")
-    address = input("Enter Address: ")
+    guardian_name = get_valid_text("Enter Guardian Name: ")
+    address = get_valid_text("Enter Address: ")
 
     student = Student(
         student_id,
@@ -94,6 +140,11 @@ def add_student():
 
 
 def update_student():
+
+    if students == []:
+        print("No Students Found")
+        return
+
     while True:
         update_id = input("Enter Student ID: ")
 
@@ -104,37 +155,36 @@ def update_student():
         else:
             print("Student not found. Please enter a valid Student ID.")
 
-    new_name = input("Enter new name: ")
+    new_name = get_valid_name("Enter new name: ")
     student.name = new_name
 
-    new_phone_no = get_valid_phone()
+    new_phone_no = get_valid_phone("Enter new phone number: ")
     student.phone_number = new_phone_no
 
-    new_email = get_valid_email()
+    new_email = get_valid_email("Enter new email: ")
     student.email = new_email
 
-    new_course = input("Enter new course name: ")
+    new_course = get_valid_course("Enter new course name: ")
     student.course = new_course
 
-    while True:
-        try:
-            new_age = int(input("Enter new age: "))
-            break
-        except ValueError:
-            print("Please enter a valid age.")
-
+    new_age = get_valid_age("Enter new age: ")
     student.age = new_age
 
-    new_gaurdian_name = input("Enter new gaurdian name: ")
-    student.gaurdian_name = new_gaurdian_name
+    new_guardian_name = get_valid_text("Enter new guardian name: ")
+    student.guardian_name = new_guardian_name
 
-    new_address = input("Enter new address: ")
+    new_address = get_valid_text("Enter new address: ")
     student.address = new_address
 
     print("Student updated successfully!!!")
 
 
 def delete_student():
+
+    if students == []:
+        print("No Students Found")
+        return
+
     while True:
         delete_id = input("Enter Student ID: ")
 
@@ -162,6 +212,11 @@ def view_students():
 
 
 def search_student():
+
+    if students == []:
+        print("No Students Found")
+        return
+
     while True:
         search_id = input("Enter Student ID: ")
 
