@@ -164,6 +164,22 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Improved overall input validation and program reliability
 - Tested all menu options and validation cases successfully
 
+### Day 16
+
+- Started SQLite database integration
+- Created `database.py` for database operations
+- Connected Python to SQLite using `sqlite3.connect()`
+- Learned about database connections and cursors
+- Created the `students` table using SQL
+- Learned about tables, rows, columns, and primary keys
+- Added all 8 student fields to the database table
+- Used `connection.commit()` to save database changes
+- Inserted a test student record using `INSERT INTO`
+- Learned about SQL parameter placeholders (`?`)
+- Created `students.db` for permanent data storage
+- Verified the database table structure
+- Learned the basics of retrieving data using `SELECT`
+
 ## Technologies
 
 - Python
@@ -172,5 +188,5 @@ A Python-based Student Management System built from scratch as part of my Softwa
 ## Status
 
 - Terminal version completed
-- SQLite database integration planned next
+- SQLite database integration in progress
 - Project in Progress
