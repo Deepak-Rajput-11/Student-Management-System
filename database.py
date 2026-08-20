@@ -17,17 +17,10 @@ cursor.execute("""
     )
 """)
 
-cursor.execute(
-    """
-    INSERT INTO students
-    (student_id, name, phone_number, email, course, age, guardian_name, address)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-""",
-    ("S001", "Rahul", "9876543210", "rahul@gmail.com", "BCA", 20, "Rajesh", "Delhi"),
-)
+cursor.execute("SELECT * FROM students")
 
-connection.commit()
+student = cursor.fetchone()
+print(student)
 
-print("Student inserted successfully!")
 
 connection.close()
