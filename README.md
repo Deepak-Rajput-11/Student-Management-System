@@ -180,6 +180,16 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Verified the database table structure
 - Learned the basics of retrieving data using `SELECT`
 
+### Day 17
+
+- Learned SQL `SELECT` command.
+- Retrieved data from the SQLite database.
+- Learned the difference between `fetchall()` and `fetchone()`.
+- Understood that `fetchall()` returns all rows as a list of tuples.
+- Understood that `fetchone()` returns a single row or `None`.
+- Learned why `fetchone()` is suitable for searching by Student ID.
+- Verified that student records can be read from `students.db`.
+
 ## Technologies
 
 - Python
