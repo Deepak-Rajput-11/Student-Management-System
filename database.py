@@ -17,10 +17,4 @@ cursor.execute("""
     )
 """)
 
-cursor.execute("SELECT * FROM students")
-
-student = cursor.fetchone()
-print(student)
-
-
 connection.close()
