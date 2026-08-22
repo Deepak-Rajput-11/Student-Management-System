@@ -1,4 +1,10 @@
 from student import Student
+from database import (
+    add_student_db,
+    get_all_students_db,
+    find_student_db,
+    update_student_db,
+)
 
 
 def get_valid_name(prompt):
@@ -135,20 +141,16 @@ def add_student():
         address,
     )
 
-    students.append(student)
+    add_student_db(student)
     print("Student added successfully!")
 
 
 def update_student():
 
-    if students == []:
-        print("No Students Found")
-        return
-
     while True:
         update_id = input("Enter Student ID: ")
 
-        student = find_student(update_id)
+        student = find_student_db(update_id)
 
         if student is not None:
             break
@@ -176,6 +178,8 @@ def update_student():
     new_address = get_valid_text("Enter new address: ")
     student.address = new_address
 
+    update_student_db(student)
+
     print("Student updated successfully!!!")
 
 
@@ -200,6 +204,7 @@ def delete_student():
 
 
 def view_students():
+    students = get_all_students_db()
     if students == []:
         print("No Students Found")
         return
@@ -213,14 +218,10 @@ def view_students():
 
 def search_student():
 
-    if students == []:
-        print("No Students Found")
-        return
-
     while True:
         search_id = input("Enter Student ID: ")
 
-        student = find_student(search_id)
+        student = find_student_db(search_id)
 
         if student is not None:
             print("============================")

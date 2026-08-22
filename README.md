@@ -190,6 +190,26 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Learned why `fetchone()` is suitable for searching by Student ID.
 - Verified that student records can be read from `students.db`.
 
+### Day 18
+
+- Integrated SQLite database with the main Student Management System
+- Created `add_student_db()` to save student records permanently
+- Replaced temporary list storage in Add Student with SQLite storage
+- Created `get_all_students_db()` to retrieve all student records
+- Used `SELECT * FROM students` and `fetchall()` to read database records
+- Converted SQLite rows into Student objects
+- Connected View Students with the SQLite database
+- Verified that student records remain saved after restarting the application
+- Created `find_student_db()` to search students by Student ID
+- Used `SELECT` with `WHERE` and `fetchone()` for individual student searches
+- Learned how single-value tuples such as `(student_id,)` are used with SQL placeholders
+- Connected Search Student with the SQLite database
+- Created `update_student_db()` using the SQL `UPDATE` command
+- Connected Update Student with SQLite
+- Used `WHERE student_id = ?` to update only the selected student
+- Used `commit()` to permanently save database changes
+- Successfully tested Add, View, Search, and Update operations with SQLite
+
 ## Technologies
 
 - Python
