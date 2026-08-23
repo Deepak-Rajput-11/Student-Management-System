@@ -4,6 +4,7 @@ from database import (
     get_all_students_db,
     find_student_db,
     update_student_db,
+    delete_student_db,
 )
 
 
@@ -84,14 +85,6 @@ def get_valid_text(prompt):
             return value
 
 
-def find_student(student_id):
-    for student in students:
-        if student.student_id == student_id:
-            return student
-
-    return None
-
-
 def display_student(student):
     print(f"ID:            {student.student_id}")
     print(f"Name:          {student.name}")
@@ -106,13 +99,13 @@ def display_student(student):
 
 def add_student():
     while True:
-        student_id = input("Enter Student ID: ")
+        student_id = input("Enter Student ID: ").strip()
 
-        if student_id.strip() == "":
+        if student_id == "":
             print("Student ID cannot be empty.")
             continue
 
-        if find_student(student_id) is not None:
+        if find_student_db(student_id) is not None:
             print("Student ID already exists.")
             continue
 
@@ -146,9 +139,14 @@ def add_student():
 
 
 def update_student():
+    students = get_all_students_db()
+
+    if students == []:
+        print("No Students Found")
+        return
 
     while True:
-        update_id = input("Enter Student ID: ")
+        update_id = input("Enter Student ID: ").strip()
 
         student = find_student_db(update_id)
 
@@ -184,22 +182,23 @@ def update_student():
 
 
 def delete_student():
+    students = get_all_students_db()
 
     if students == []:
         print("No Students Found")
         return
 
     while True:
-        delete_id = input("Enter Student ID: ")
+        delete_id = input("Enter Student ID: ").strip()
 
-        student = find_student(delete_id)
+        student = find_student_db(delete_id)
 
         if student is not None:
             break
         else:
             print("Student not found. Please enter a valid Student ID.")
 
-    students.remove(student)
+    delete_student_db(delete_id)
     print("Student deleted successfully!")
 
 
@@ -217,9 +216,14 @@ def view_students():
 
 
 def search_student():
+    students = get_all_students_db()
+
+    if students == []:
+        print("No Students Found")
+        return
 
     while True:
-        search_id = input("Enter Student ID: ")
+        search_id = input("Enter Student ID: ").strip()
 
         student = find_student_db(search_id)
 
@@ -233,8 +237,6 @@ def search_student():
         else:
             print("Student not found. Please enter a valid Student ID.")
 
-
-students = []
 
 running = True
 

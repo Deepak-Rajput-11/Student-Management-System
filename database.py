@@ -134,4 +134,17 @@ def update_student_db(student):
     connection.close()
 
 
+def delete_student_db(student_id):
+    connection = sqlite3.connect("students.db")
+    cursor = connection.cursor()
+
+    cursor.execute(
+        "DELETE FROM students WHERE student_id = ?",
+        (student_id,),
+    )
+
+    connection.commit()
+    connection.close()
+
+
 connection.close()
