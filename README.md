@@ -210,6 +210,53 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Used `commit()` to permanently save database changes
 - Successfully tested Add, View, Search, and Update operations with SQLite
 
+### Day 19
+
+- Completed full SQLite CRUD integration
+- Created `delete_student_db()` using the SQL `DELETE` command
+- Connected Delete Student functionality with the SQLite database
+- Used `WHERE student_id = ?` to safely delete a specific student
+- Removed the old temporary `students = []` storage system
+- Removed the old list-based `find_student()` function
+- Updated duplicate Student ID checking to use `find_student_db()`
+- Reviewed all SQLite database operations:
+  - `CREATE TABLE` for creating the students table
+  - `INSERT` for adding students
+  - `SELECT` with `fetchall()` for viewing students
+  - `SELECT` with `WHERE` and `fetchone()` for searching students
+  - `UPDATE` for modifying student records
+  - `DELETE` for removing student records
+- Reviewed SQL placeholders and single-value tuples such as `(student_id,)`
+- Added empty-database handling for Search, Update, and Delete
+- Fixed Student ID whitespace issues using `.strip()`
+- Tested Add, View, Search, Update, and Delete operations successfully
+- Completed the terminal + SQLite backend version of the Student Management System
+
+### Day 20
+
+- Started GUI development using Tkinter
+- Created a new `gui.py` file for the graphical interface
+- Created the main application window using `tk.Tk()`
+- Added the application title and window size using `title()` and `geometry()`
+- Learned about Tkinter widgets
+- Added and styled the main heading using `Label`
+- Created the first `Button` widget
+- Connected the Add Student button to a Python function using `command`
+- Learned the difference between `command=function` and `command=function()`
+- Created input fields using the `Entry` widget
+- Learned to read Entry values using `.get()`
+- Learned to clear Entry fields using `.delete(0, tk.END)`
+- Learned how `pack()` works for positioning widgets
+- Learned about `padx` and `pady`
+- Created a `Frame` to organize form widgets
+- Learned how `grid()` uses rows and columns
+- Learned the difference between `pack()` and `grid()`
+- Built the first three fields of the Add Student form:
+  - Student ID
+  - Name
+  - Phone Number
+- Tested GUI input, button events, and clearing fields successfully
+
 ## Technologies
 
 - Python
@@ -218,5 +265,7 @@ A Python-based Student Management System built from scratch as part of my Softwa
 ## Status
 
 - Terminal version completed
-- SQLite database integration in progress
+- SQLite database integration completed
+- Full CRUD operations completed
+- GUI development pending
 - Project in Progress
