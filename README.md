@@ -257,6 +257,29 @@ A Python-based Student Management System built from scratch as part of my Softwa
   - Phone Number
 - Tested GUI input, button events, and clearing fields successfully
 
+### Day 21
+
+- Continued development of the Tkinter GUI
+- Completed the Add Student form with all student fields:
+  - Student ID
+  - Name
+  - Phone Number
+  - Email
+  - Course
+  - Age
+  - Guardian Name
+  - Address
+- Used `Entry.get()` to retrieve values from all GUI input fields
+- Used `Entry.delete()` to clear all fields after submission
+- Learned and implemented Tkinter `messagebox`
+- Added a success popup using `messagebox.showinfo()`
+- Added basic empty-field validation
+- Added an error popup using `messagebox.showerror()`
+- Used `return` to stop the function when validation fails
+- Tested the form with both valid and empty inputs
+- Completed the basic Add Student GUI structure
+- Kept the GUI disconnected from SQLite for now
+
 ## Technologies
 
 - Python
@@ -267,5 +290,5 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Terminal version completed
 - SQLite database integration completed
 - Full CRUD operations completed
-- GUI development pending
+- GUI development in progress
 - Project in Progress
