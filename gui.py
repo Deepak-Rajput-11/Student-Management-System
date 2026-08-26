@@ -58,13 +58,20 @@ def add_student():
     address_entry.delete(0, tk.END)
 
 
-add_button = tk.Button(
-    root,
-    text="Add Student",
-    command=add_student,
-)
+def view_students():
+    view_window = tk.Toplevel(root)
 
-add_button.pack(pady=10)
+    view_window.title("View Students")
+    view_window.geometry("700x400")
+
+    view_title = tk.Label(
+        view_window,
+        text="Student Records",
+        font=("Arial", 20, "bold"),
+    )
+
+    view_title.pack(pady=20)
+
 
 form_frame = tk.Frame(root)
 form_frame.pack(pady=20)
@@ -121,5 +128,20 @@ address_label.grid(row=7, column=0, padx=10, pady=5)
 address_entry = tk.Entry(form_frame)
 address_entry.grid(row=7, column=1, padx=10, pady=5)
 
+add_button = tk.Button(
+    root,
+    text="Add Student",
+    command=add_student,
+)
+
+add_button.pack(pady=10)
+
+view_button = tk.Button(
+    root,
+    text="View Students",
+    command=view_students,
+)
+
+view_button.pack(pady=10)
 
 root.mainloop()
