@@ -280,6 +280,23 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Completed the basic Add Student GUI structure
 - Kept the GUI disconnected from SQLite for now
 
+### Day 22
+
+- Revised the complete Tkinter GUI code from top to bottom
+- Reviewed `Tk()`, `mainloop()`, Label, Entry, Button, and widgets
+- Reviewed `command=` and how buttons call functions
+- Reviewed `.get()` and `.delete()` for Entry widgets
+- Revised `pack()`, `grid()`, rows, columns, and Frame
+- Reviewed `padx` and `pady`
+- Reviewed `messagebox.showinfo()` and `messagebox.showerror()`
+- Reviewed the use of `return` during GUI validation
+- Performed a complete line-by-line dry run of `gui.py`
+- Moved the Add Student button below the student form
+- Added a View Students button and connected it to a function
+- Learned about `Toplevel` for creating additional windows
+- Decided to use a single-window layout for the final application
+- Planned a sidebar and main content area for the next GUI stage
+
 ## Technologies
 
 - Python
