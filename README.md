@@ -297,6 +297,22 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Decided to use a single-window layout for the final application
 - Planned a sidebar and main content area for the next GUI stage
 
+### Day 23
+
+- Started restructuring the GUI into a single-window application layout
+- Increased the main window size to support the new layout
+- Created `main_frame` as the main GUI container
+- Created `sidebar_frame` for navigation controls
+- Created `content_frame` for displaying application content
+- Used temporary background colors to understand Frame positioning
+- Moved the Add Student and View Students buttons into the sidebar
+- Moved the complete Add Student form into the content area
+- Added a separate Save Student button inside the Add Student form
+- Connected the Save Student button to the existing `add_student()` function
+- Created `show_add_student()` for Add Student navigation
+- Separated navigation behavior from form submission behavior
+- Prepared the GUI structure for future screen switching
+
 ## Technologies
 
 - Python
