@@ -4,7 +4,7 @@ from tkinter import messagebox
 root = tk.Tk()  # Create main window
 
 root.title("Student Management System")  # Set window title
-root.geometry("800x600")
+root.geometry("1000x600")
 
 title_label = tk.Label(
     root,
@@ -12,6 +12,14 @@ title_label = tk.Label(
     font=("Arial", 24, "bold"),
 )
 title_label.pack(pady=20)
+main_frame = tk.Frame(root)
+main_frame.pack(fill="both", expand=True)
+
+sidebar_frame = tk.Frame(main_frame, width=200, bg="lightgray")
+sidebar_frame.pack(side="left", fill="y")
+
+content_frame = tk.Frame(main_frame, bg="white")
+content_frame.pack(side="right", fill="both", expand=True)
 
 
 def add_student():
@@ -58,6 +66,10 @@ def add_student():
     address_entry.delete(0, tk.END)
 
 
+def show_add_student():
+    form_frame.pack(pady=20)
+
+
 def view_students():
     view_window = tk.Toplevel(root)
 
@@ -73,7 +85,7 @@ def view_students():
     view_title.pack(pady=20)
 
 
-form_frame = tk.Frame(root)
+form_frame = tk.Frame(content_frame)
 form_frame.pack(pady=20)
 
 id_label = tk.Label(form_frame, text="Student ID:")
@@ -128,16 +140,25 @@ address_label.grid(row=7, column=0, padx=10, pady=5)
 address_entry = tk.Entry(form_frame)
 address_entry.grid(row=7, column=1, padx=10, pady=5)
 
-add_button = tk.Button(
-    root,
-    text="Add Student",
+save_button = tk.Button(
+    form_frame,
+    text="Save Student",
     command=add_student,
+)
+
+save_button.grid(row=8, column=0, columnspan=2, pady=15)
+
+add_button = tk.Button(
+    sidebar_frame,
+    text="Add Student",
+    command=show_add_student,
 )
 
 add_button.pack(pady=10)
 
+
 view_button = tk.Button(
-    root,
+    sidebar_frame,
     text="View Students",
     command=view_students,
 )
