@@ -313,6 +313,27 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Separated navigation behavior from form submission behavior
 - Prepared the GUI structure for future screen switching
 
+### Day 24
+
+- Continued development of the View Students GUI
+- Learned and implemented `ttk.Treeview` for displaying student records
+- Added all student data columns to the Treeview
+- Configured Treeview column headings and widths
+- Created a separate `table_frame` to organize the student table
+- Added a horizontal scrollbar to navigate wider student records
+- Learned how `Treeview.insert()` adds records as rows
+- Learned how `get_children()` and `delete()` can clear existing Treeview rows
+- Implemented single-window navigation between Add Student and View Students
+- Used `pack_forget()` to hide and switch between GUI screens
+- Connected View Students to the SQLite database using `get_all_students_db()`
+- Displayed real database records inside the Treeview
+- Connected the Add Student GUI to SQLite using `add_student_db()`
+- Created `Student` objects from GUI form data before saving
+- Added duplicate Student ID checking using `find_student_db()`
+- Added a GUI error message when an existing Student ID is entered
+- Tested the complete Add Student → SQLite → View Students flow successfully
+- Verified that switching between screens does not duplicate Treeview records
+
 ## Technologies
 
 - Python
