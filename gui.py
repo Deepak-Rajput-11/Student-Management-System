@@ -1,5 +1,7 @@
 import tkinter as tk  # Import Tkinter
-from tkinter import messagebox
+from tkinter import messagebox, ttk
+from database import get_all_students_db, add_student_db, find_student_db
+from student import Student
 
 root = tk.Tk()  # Create main window
 
@@ -45,6 +47,25 @@ def add_student():
         messagebox.showerror("Error", "Please fill all fields.")
         return
 
+    existing_student = find_student_db(student_id)
+
+    if existing_student is not None:
+        messagebox.showerror("Error", "Student ID already exists.")
+        return
+
+    student = Student(
+        student_id,
+        name,
+        phone_number,
+        email,
+        course,
+        age,
+        guardian_name,
+        address,
+    )
+
+    add_student_db(student)
+
     print(student_id)
     print(name)
     print(phone_number)
@@ -67,26 +88,88 @@ def add_student():
 
 
 def show_add_student():
+    view_frame.pack_forget()
     form_frame.pack(pady=20)
 
 
 def view_students():
-    view_window = tk.Toplevel(root)
+    form_frame.pack_forget()
+    view_frame.pack(fill="both", expand=True)
 
-    view_window.title("View Students")
-    view_window.geometry("700x400")
+    for row in student_table.get_children():
+        student_table.delete(row)
 
-    view_title = tk.Label(
-        view_window,
-        text="Student Records",
-        font=("Arial", 20, "bold"),
-    )
+    students = get_all_students_db()
 
-    view_title.pack(pady=20)
+    for student in students:
+        student_table.insert(
+            "",
+            "end",
+            values=(
+                student.student_id,
+                student.name,
+                student.phone_number,
+                student.email,
+                student.course,
+                student.age,
+                student.guardian_name,
+                student.address,
+            ),
+        )
 
 
 form_frame = tk.Frame(content_frame)
 form_frame.pack(pady=20)
+
+view_frame = tk.Frame(content_frame, bg="white")
+
+view_title = tk.Label(
+    view_frame,
+    text="Student Records",
+    font=("Arial", 20, "bold"),
+    bg="white",
+)
+
+view_title.pack(pady=20)
+table_frame = tk.Frame(view_frame)
+table_frame.pack(fill="both", expand=True, padx=20, pady=10)
+
+student_table = ttk.Treeview(
+    table_frame,
+    columns=("ID", "Name", "Phone", "Email", "Course", "Age", "Guardian", "Address"),
+    show="headings",
+)
+
+student_table.heading("ID", text="Student ID")
+student_table.heading("Name", text="Name")
+student_table.heading("Phone", text="Phone Number")
+student_table.heading("Email", text="Email")
+student_table.heading("Course", text="Course")
+student_table.heading("Age", text="Age")
+student_table.heading("Guardian", text="Guardian Name")
+student_table.heading("Address", text="Address")
+
+student_table.column("ID", width=80)
+student_table.column("Name", width=120)
+student_table.column("Phone", width=120)
+student_table.column("Email", width=160)
+student_table.column("Course", width=100)
+student_table.column("Age", width=60)
+student_table.column("Guardian", width=130)
+student_table.column("Address", width=180)
+
+student_table.pack(side="top", fill="both", expand=True)
+
+horizontal_scrollbar = ttk.Scrollbar(
+    table_frame,
+    orient="horizontal",
+    command=student_table.xview,
+)
+
+horizontal_scrollbar.pack(side="bottom", fill="x")
+
+student_table.configure(xscrollcommand=horizontal_scrollbar.set)
+
 
 id_label = tk.Label(form_frame, text="Student ID:")
 id_label.grid(row=0, column=0, padx=10, pady=5)
