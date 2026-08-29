@@ -89,11 +89,13 @@ def add_student():
 
 def show_add_student():
     view_frame.pack_forget()
+    search_frame.pack_forget()
     form_frame.pack(pady=20)
 
 
 def view_students():
     form_frame.pack_forget()
+    search_frame.pack_forget()
     view_frame.pack(fill="both", expand=True)
 
     for row in student_table.get_children():
@@ -118,10 +120,82 @@ def view_students():
         )
 
 
+def show_search_student():
+    form_frame.pack_forget()
+    view_frame.pack_forget()
+    search_frame.pack(fill="both", expand=True)
+
+
+def search_student():
+
+    search_result_label.config(text="")
+
+    student_id = search_id_entry.get().strip()
+
+    if student_id == "":
+        messagebox.showerror("Error", "Please enter Student ID.")
+        return
+
+    student = find_student_db(student_id)
+
+    if student is None:
+        messagebox.showerror("Error", "Student not found.")
+        return
+
+    search_result_label.config(text=f"""
+Student ID: {student.student_id}
+Name: {student.name}
+Phone Number: {student.phone_number}
+Email: {student.email}
+Course: {student.course}
+Age: {student.age}
+Guardian Name: {student.guardian_name}
+Address: {student.address}
+""")
+
+
 form_frame = tk.Frame(content_frame)
 form_frame.pack(pady=20)
 
 view_frame = tk.Frame(content_frame, bg="white")
+search_frame = tk.Frame(content_frame, bg="white")
+
+search_title = tk.Label(
+    search_frame,
+    text="Search Student",
+    font=("Arial", 20, "bold"),
+    bg="white",
+)
+
+search_title.pack(pady=20)
+
+search_id_label = tk.Label(
+    search_frame,
+    text="Student ID:",
+    bg="white",
+)
+
+search_id_label.pack(pady=5)
+
+search_id_entry = tk.Entry(search_frame)
+search_id_entry.pack(pady=5)
+
+search_action_button = tk.Button(
+    search_frame,
+    text="Search",
+    command=search_student,
+)
+
+search_action_button.pack(pady=10)
+
+search_result_label = tk.Label(
+    search_frame,
+    text="",
+    bg="white",
+    justify="left",
+)
+
+search_result_label.pack(pady=20)
 
 view_title = tk.Label(
     view_frame,
@@ -247,5 +321,14 @@ view_button = tk.Button(
 )
 
 view_button.pack(pady=10)
+
+search_button = tk.Button(
+    sidebar_frame,
+    text="Search Student",
+    command=show_search_student,
+)
+
+search_button.pack(pady=10)
+
 
 root.mainloop()
