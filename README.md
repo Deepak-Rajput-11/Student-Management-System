@@ -334,6 +334,23 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Tested the complete Add Student → SQLite → View Students flow successfully
 - Verified that switching between screens does not duplicate Treeview records
 
+### Day 25
+
+- Started development of the Search Student GUI
+- Added a Search Student button to the sidebar
+- Created a separate `search_frame` inside the main content area
+- Added Student ID input for searching records
+- Created `search_student()` to handle the search operation
+- Used `.get().strip()` to read and clean the entered Student ID
+- Added validation for an empty Student ID
+- Connected the GUI search with SQLite using `find_student_db()`
+- Added error handling when a student is not found
+- Created a result label for displaying searched student details
+- Learned and used `.config()` to update an existing Label
+- Displayed all student details when a matching Student ID is found
+- Cleared previous search results before performing a new search
+- Tested successful, empty, and invalid Student ID searches
+
 ## Technologies
 
 - Python
