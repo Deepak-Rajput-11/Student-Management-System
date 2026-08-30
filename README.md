@@ -351,6 +351,34 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Cleared previous search results before performing a new search
 - Tested successful, empty, and invalid Student ID searches
 
+### Day 26
+
+- Reviewed the complete Search Student GUI flow from Day 25
+- Started development of the Update Student GUI
+- Added `update_student_db()` to the GUI database imports
+- Created a separate `update_frame` for the Update Student screen
+- Added an Update Student navigation button to the sidebar
+- Updated navigation functions to correctly hide inactive GUI screens
+- Used `pack_forget()` to prevent multiple screens from appearing together
+- Added Student ID input and Find Student button for updates
+- Created `find_update_student()` and connected it with `find_student_db()`
+- Added empty Student ID and student-not-found handling
+- Created an editable update form for student information
+- Added fields for Name, Phone Number, Email, Course, Age, Guardian Name, and Address
+- Learned how `Entry.insert()` loads existing database values into Entry widgets
+- Used `Entry.delete()` before `insert()` to clear previous values
+- Loaded existing SQLite student data automatically into the Update form
+- Created `update_student()` to collect edited values from the GUI
+- Added empty-field validation before updating a student
+- Created an updated `Student` object using the edited information
+- Connected the Update Student GUI with SQLite using `update_student_db()`
+- Added a success message after updating a student
+- Fixed old student details remaining visible after an invalid search
+- Stored the currently selected Student ID to prevent updating the wrong record
+- Locked the Student ID after finding a student
+- Reset and unlocked the Student ID when reopening the Update screen
+- Tested the complete Find → Load → Edit → Update → Verify flow successfully
+
 ## Technologies
 
 - Python
