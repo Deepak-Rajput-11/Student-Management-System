@@ -1,6 +1,11 @@
 import tkinter as tk  # Import Tkinter
 from tkinter import messagebox, ttk
-from database import get_all_students_db, add_student_db, find_student_db
+from database import (
+    get_all_students_db,
+    add_student_db,
+    find_student_db,
+    update_student_db,
+)
 from student import Student
 
 root = tk.Tk()  # Create main window
@@ -90,12 +95,14 @@ def add_student():
 def show_add_student():
     view_frame.pack_forget()
     search_frame.pack_forget()
+    update_frame.pack_forget()
     form_frame.pack(pady=20)
 
 
 def view_students():
     form_frame.pack_forget()
     search_frame.pack_forget()
+    update_frame.pack_forget()
     view_frame.pack(fill="both", expand=True)
 
     for row in student_table.get_children():
@@ -123,7 +130,106 @@ def view_students():
 def show_search_student():
     form_frame.pack_forget()
     view_frame.pack_forget()
+    update_frame.pack_forget()
     search_frame.pack(fill="both", expand=True)
+
+
+def show_update_student():
+    form_frame.pack_forget()
+    view_frame.pack_forget()
+    search_frame.pack_forget()
+
+    update_id_entry.config(state="normal")
+    update_id_entry.delete(0, tk.END)
+    update_form_frame.pack_forget()
+
+    update_frame.pack(fill="both", expand=True)
+
+
+current_update_student_id = None
+
+
+def find_update_student():
+    global current_update_student_id
+
+    update_form_frame.pack_forget()
+
+    student_id = update_id_entry.get().strip()
+
+    if student_id == "":
+        messagebox.showerror("Error", "Please enter Student ID.")
+        return
+
+    student = find_student_db(student_id)
+
+    if student is None:
+        messagebox.showerror("Error", "Student not found.")
+        return
+
+    current_update_student_id = student_id
+    update_id_entry.config(state="disabled")
+
+    update_name_entry.delete(0, tk.END)
+    update_name_entry.insert(0, student.name)
+
+    update_phone_entry.delete(0, tk.END)
+    update_phone_entry.insert(0, student.phone_number)
+
+    update_email_entry.delete(0, tk.END)
+    update_email_entry.insert(0, student.email)
+
+    update_course_entry.delete(0, tk.END)
+    update_course_entry.insert(0, student.course)
+
+    update_age_entry.delete(0, tk.END)
+    update_age_entry.insert(0, student.age)
+
+    update_guardian_entry.delete(0, tk.END)
+    update_guardian_entry.insert(0, student.guardian_name)
+
+    update_address_entry.delete(0, tk.END)
+    update_address_entry.insert(0, student.address)
+
+    update_form_frame.pack(pady=10)
+
+
+def update_student():
+    student_id = current_update_student_id
+
+    name = update_name_entry.get()
+    phone_number = update_phone_entry.get()
+    email = update_email_entry.get()
+    course = update_course_entry.get()
+    age = update_age_entry.get()
+    guardian_name = update_guardian_entry.get()
+    address = update_address_entry.get()
+
+    if (
+        name.strip() == ""
+        or phone_number.strip() == ""
+        or email.strip() == ""
+        or course.strip() == ""
+        or age.strip() == ""
+        or guardian_name.strip() == ""
+        or address.strip() == ""
+    ):
+        messagebox.showerror("Error", "Please fill all fields.")
+        return
+
+    student = Student(
+        student_id,
+        name,
+        phone_number,
+        email,
+        course,
+        age,
+        guardian_name,
+        address,
+    )
+
+    update_student_db(student)
+
+    messagebox.showinfo("Success", "Student updated successfully!")
 
 
 def search_student():
@@ -159,6 +265,128 @@ form_frame.pack(pady=20)
 
 view_frame = tk.Frame(content_frame, bg="white")
 search_frame = tk.Frame(content_frame, bg="white")
+update_frame = tk.Frame(content_frame, bg="white")
+
+update_title = tk.Label(
+    update_frame,
+    text="Update Student",
+    font=("Arial", 20, "bold"),
+    bg="white",
+)
+update_title.pack(pady=20)
+
+update_id_label = tk.Label(
+    update_frame,
+    text="Student ID:",
+    bg="white",
+)
+update_id_label.pack(pady=5)
+
+update_id_entry = tk.Entry(update_frame)
+update_id_entry.pack(pady=5)
+
+find_update_button = tk.Button(
+    update_frame,
+    text="Find Student",
+    command=find_update_student,
+)
+
+find_update_button.pack(pady=10)
+
+update_form_frame = tk.Frame(
+    update_frame,
+    bg="white",
+)
+
+
+update_name_label = tk.Label(
+    update_form_frame,
+    text="Name:",
+    bg="white",
+)
+update_name_label.grid(row=0, column=0, padx=10, pady=5)
+
+update_name_entry = tk.Entry(update_form_frame)
+update_name_entry.grid(row=0, column=1, padx=10, pady=5)
+
+
+update_phone_label = tk.Label(
+    update_form_frame,
+    text="Phone Number:",
+    bg="white",
+)
+update_phone_label.grid(row=1, column=0, padx=10, pady=5)
+
+update_phone_entry = tk.Entry(update_form_frame)
+update_phone_entry.grid(row=1, column=1, padx=10, pady=5)
+
+update_email_label = tk.Label(
+    update_form_frame,
+    text="Email:",
+    bg="white",
+)
+update_email_label.grid(row=2, column=0, padx=10, pady=5)
+
+update_email_entry = tk.Entry(update_form_frame)
+update_email_entry.grid(row=2, column=1, padx=10, pady=5)
+
+
+update_course_label = tk.Label(
+    update_form_frame,
+    text="Course:",
+    bg="white",
+)
+update_course_label.grid(row=3, column=0, padx=10, pady=5)
+
+update_course_entry = tk.Entry(update_form_frame)
+update_course_entry.grid(row=3, column=1, padx=10, pady=5)
+
+
+update_age_label = tk.Label(
+    update_form_frame,
+    text="Age:",
+    bg="white",
+)
+update_age_label.grid(row=4, column=0, padx=10, pady=5)
+
+update_age_entry = tk.Entry(update_form_frame)
+update_age_entry.grid(row=4, column=1, padx=10, pady=5)
+
+
+update_guardian_label = tk.Label(
+    update_form_frame,
+    text="Guardian Name:",
+    bg="white",
+)
+update_guardian_label.grid(row=5, column=0, padx=10, pady=5)
+
+update_guardian_entry = tk.Entry(update_form_frame)
+update_guardian_entry.grid(row=5, column=1, padx=10, pady=5)
+
+
+update_address_label = tk.Label(
+    update_form_frame,
+    text="Address:",
+    bg="white",
+)
+update_address_label.grid(row=6, column=0, padx=10, pady=5)
+
+update_address_entry = tk.Entry(update_form_frame)
+update_address_entry.grid(row=6, column=1, padx=10, pady=5)
+
+update_action_button = tk.Button(
+    update_form_frame,
+    text="Update Student",
+    command=update_student,
+)
+
+update_action_button.grid(
+    row=7,
+    column=0,
+    columnspan=2,
+    pady=15,
+)
+
 
 search_title = tk.Label(
     search_frame,
@@ -330,5 +558,11 @@ search_button = tk.Button(
 
 search_button.pack(pady=10)
 
+update_button = tk.Button(
+    sidebar_frame,
+    text="Update Student",
+    command=show_update_student,
+)
+update_button.pack(pady=10)
 
 root.mainloop()
