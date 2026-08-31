@@ -379,6 +379,29 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Reset and unlocked the Student ID when reopening the Update screen
 - Tested the complete Find → Load → Edit → Update → Verify flow successfully
 
+### Day 27
+
+- Reviewed the complete Update Student GUI flow from Day 26
+- Started development of the Delete Student GUI
+- Added `delete_student_db()` to the GUI database imports
+- Created a separate Delete Student screen using `delete_frame`
+- Added a Delete Student navigation button to the sidebar
+- Updated navigation functions to support the Delete Student screen
+- Added Student ID input and Find Student button
+- Created `find_delete_student()` and connected it with `find_student_db()`
+- Added empty Student ID and student-not-found handling
+- Displayed student details before deletion
+- Improved the Delete Student details layout using a separate Frame and aligned Labels
+- Added a Delete Student action button below the student details
+- Added a Yes/No confirmation dialog using `messagebox.askyesno()`
+- Connected Delete Student GUI with SQLite using `delete_student_db()`
+- Locked the Student ID field after finding a valid student
+- Cleared and unlocked the Student ID field after successful deletion
+- Hid old student details and the Delete button when appropriate
+- Added proper screen reset when reopening Delete Student
+- Tested cancellation and successful deletion
+- Verified deleted students are removed from the View Students table
+
 ## Technologies
 
 - Python
