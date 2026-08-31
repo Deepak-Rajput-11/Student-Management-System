@@ -5,7 +5,9 @@ from database import (
     add_student_db,
     find_student_db,
     update_student_db,
+    delete_student_db,
 )
+
 from student import Student
 
 root = tk.Tk()  # Create main window
@@ -96,6 +98,7 @@ def show_add_student():
     view_frame.pack_forget()
     search_frame.pack_forget()
     update_frame.pack_forget()
+    delete_frame.pack_forget()
     form_frame.pack(pady=20)
 
 
@@ -103,6 +106,7 @@ def view_students():
     form_frame.pack_forget()
     search_frame.pack_forget()
     update_frame.pack_forget()
+    delete_frame.pack_forget()
     view_frame.pack(fill="both", expand=True)
 
     for row in student_table.get_children():
@@ -131,6 +135,7 @@ def show_search_student():
     form_frame.pack_forget()
     view_frame.pack_forget()
     update_frame.pack_forget()
+    delete_frame.pack_forget()
     search_frame.pack(fill="both", expand=True)
 
 
@@ -138,6 +143,7 @@ def show_update_student():
     form_frame.pack_forget()
     view_frame.pack_forget()
     search_frame.pack_forget()
+    delete_frame.pack_forget()
 
     update_id_entry.config(state="normal")
     update_id_entry.delete(0, tk.END)
@@ -147,6 +153,20 @@ def show_update_student():
 
 
 current_update_student_id = None
+
+
+def show_delete_student():
+    form_frame.pack_forget()
+    view_frame.pack_forget()
+    search_frame.pack_forget()
+    update_frame.pack_forget()
+
+    delete_id_entry.config(state="normal")
+    delete_id_entry.delete(0, tk.END)
+    delete_details_frame.pack_forget()
+    delete_action_button.pack_forget()
+
+    delete_frame.pack(fill="both", expand=True)
 
 
 def find_update_student():
@@ -191,6 +211,57 @@ def find_update_student():
     update_address_entry.insert(0, student.address)
 
     update_form_frame.pack(pady=10)
+
+
+def find_delete_student():
+    delete_details_frame.pack_forget()
+    delete_action_button.pack_forget()
+
+    student_id = delete_id_entry.get().strip()
+
+    if student_id == "":
+        messagebox.showerror("Error", "Please enter Student ID.")
+        return
+
+    student = find_student_db(student_id)
+
+    if student is None:
+        messagebox.showerror("Error", "Student not found.")
+        return
+    delete_id_entry.config(state="disabled")
+
+    delete_student_id_value.config(text=student.student_id)
+    delete_name_value.config(text=student.name)
+    delete_phone_value.config(text=student.phone_number)
+    delete_email_value.config(text=student.email)
+    delete_course_value.config(text=student.course)
+    delete_age_value.config(text=student.age)
+    delete_guardian_value.config(text=student.guardian_name)
+    delete_address_value.config(text=student.address)
+
+    delete_details_frame.pack(pady=20)
+    delete_action_button.pack(pady=10)
+
+
+def delete_student():
+    student_id = delete_id_entry.get().strip()
+
+    confirm = messagebox.askyesno(
+        "Confirm Delete", "Are you sure you want to delete this student?"
+    )
+
+    if confirm == False:
+        return
+
+    delete_student_db(student_id)
+
+    messagebox.showinfo("Success", "Student deleted successfully!")
+
+    delete_details_frame.pack_forget()
+    delete_action_button.pack_forget()
+
+    delete_id_entry.config(state="normal")
+    delete_id_entry.delete(0, tk.END)
 
 
 def update_student():
@@ -266,6 +337,174 @@ form_frame.pack(pady=20)
 view_frame = tk.Frame(content_frame, bg="white")
 search_frame = tk.Frame(content_frame, bg="white")
 update_frame = tk.Frame(content_frame, bg="white")
+delete_frame = tk.Frame(content_frame, bg="white")
+
+
+delete_title = tk.Label(
+    delete_frame,
+    text="Delete Student",
+    font=("Arial", 20, "bold"),
+    bg="white",
+)
+
+delete_title.pack(pady=20)
+
+delete_id_label = tk.Label(
+    delete_frame,
+    text="Student ID:",
+    bg="white",
+)
+
+delete_id_label.pack(pady=5)
+
+delete_id_entry = tk.Entry(delete_frame)
+delete_id_entry.pack(pady=5)
+
+find_delete_button = tk.Button(
+    delete_frame,
+    text="Find Student",
+    command=find_delete_student,
+)
+
+find_delete_button.pack(pady=10)
+
+
+delete_details_frame = tk.Frame(
+    delete_frame,
+    bg="white",
+)
+
+delete_student_id_label = tk.Label(
+    delete_details_frame,
+    text="Student ID:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+delete_student_id_label.grid(row=0, column=0, sticky="w", padx=10, pady=5)
+
+delete_student_id_value = tk.Label(
+    delete_details_frame,
+    text="",
+    bg="white",
+)
+delete_student_id_value.grid(row=0, column=1, sticky="w", padx=10, pady=5)
+
+delete_name_label = tk.Label(
+    delete_details_frame,
+    text="Name:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+delete_name_label.grid(row=1, column=0, sticky="w", padx=10, pady=5)
+
+delete_name_value = tk.Label(
+    delete_details_frame,
+    text="",
+    bg="white",
+)
+delete_name_value.grid(row=1, column=1, sticky="w", padx=10, pady=5)
+
+delete_phone_label = tk.Label(
+    delete_details_frame,
+    text="Phone Number:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+delete_phone_label.grid(row=2, column=0, sticky="w", padx=10, pady=5)
+
+delete_phone_value = tk.Label(
+    delete_details_frame,
+    text="",
+    bg="white",
+)
+delete_phone_value.grid(row=2, column=1, sticky="w", padx=10, pady=5)
+
+delete_email_label = tk.Label(
+    delete_details_frame,
+    text="Email:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+delete_email_label.grid(row=3, column=0, sticky="w", padx=10, pady=5)
+
+delete_email_value = tk.Label(
+    delete_details_frame,
+    text="",
+    bg="white",
+)
+delete_email_value.grid(row=3, column=1, sticky="w", padx=10, pady=5)
+
+# Course
+delete_course_label = tk.Label(
+    delete_details_frame,
+    text="Course:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+delete_course_label.grid(row=4, column=0, sticky="w", padx=10, pady=5)
+
+delete_course_value = tk.Label(
+    delete_details_frame,
+    text="",
+    bg="white",
+)
+delete_course_value.grid(row=4, column=1, sticky="w", padx=10, pady=5)
+
+
+delete_age_label = tk.Label(
+    delete_details_frame,
+    text="Age:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+delete_age_label.grid(row=5, column=0, sticky="w", padx=10, pady=5)
+
+delete_age_value = tk.Label(
+    delete_details_frame,
+    text="",
+    bg="white",
+)
+delete_age_value.grid(row=5, column=1, sticky="w", padx=10, pady=5)
+
+
+delete_guardian_label = tk.Label(
+    delete_details_frame,
+    text="Guardian Name:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+delete_guardian_label.grid(row=6, column=0, sticky="w", padx=10, pady=5)
+
+delete_guardian_value = tk.Label(
+    delete_details_frame,
+    text="",
+    bg="white",
+)
+delete_guardian_value.grid(row=6, column=1, sticky="w", padx=10, pady=5)
+
+
+delete_address_label = tk.Label(
+    delete_details_frame,
+    text="Address:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+delete_address_label.grid(row=7, column=0, sticky="w", padx=10, pady=5)
+
+delete_address_value = tk.Label(
+    delete_details_frame,
+    text="",
+    bg="white",
+)
+delete_address_value.grid(row=7, column=1, sticky="w", padx=10, pady=5)
+
+
+delete_action_button = tk.Button(
+    delete_frame,
+    text="Delete Student",
+    command=delete_student,
+)
+
 
 update_title = tk.Label(
     update_frame,
@@ -564,5 +803,13 @@ update_button = tk.Button(
     command=show_update_student,
 )
 update_button.pack(pady=10)
+
+delete_button = tk.Button(
+    sidebar_frame,
+    text="Delete Student",
+    command=show_delete_student,
+)
+
+delete_button.pack(pady=10)
 
 root.mainloop()
