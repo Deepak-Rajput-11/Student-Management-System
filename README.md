@@ -402,6 +402,21 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Tested cancellation and successful deletion
 - Verified deleted students are removed from the View Students table
 
+## Day 28 - Validation and Code Cleanup
+
+- Created a separate `validation.py` file for reusable validation functions.
+- Added validation for:
+  - Student name
+  - Guardian name
+  - Phone number
+  - Email address
+  - Age
+- Connected validation to both Add Student and Update Student.
+- Improved Search Student result layout using a structured details frame.
+- Fixed Update Student form so it resets after a successful update.
+- Added section comments in `gui.py` to make the code easier to navigate.
+- Tested Add and Update validation with valid and invalid inputs.
+
 ## Technologies
 
 - Python
