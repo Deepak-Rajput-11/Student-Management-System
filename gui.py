@@ -9,6 +9,7 @@ from database import (
 )
 
 from student import Student
+from validation import is_valid_phone, is_valid_email, is_valid_age, is_valid_name
 
 root = tk.Tk()  # Create main window
 
@@ -32,26 +33,46 @@ content_frame.pack(side="right", fill="both", expand=True)
 
 
 def add_student():
-    student_id = id_entry.get()
-    name = name_entry.get()
-    phone_number = phone_entry.get()
-    email = email_entry.get()
-    course = course_entry.get()
-    age = age_entry.get()
-    guardian_name = guardian_entry.get()
-    address = address_entry.get()
+    student_id = id_entry.get().strip()
+    name = name_entry.get().strip()
+    phone_number = phone_entry.get().strip()
+    email = email_entry.get().strip()
+    course = course_entry.get().strip()
+    age = age_entry.get().strip()
+    guardian_name = guardian_entry.get().strip()
+    address = address_entry.get().strip()
 
     if (
-        student_id.strip() == ""
-        or name.strip() == ""
-        or phone_number.strip() == ""
-        or email.strip() == ""
-        or course.strip() == ""
-        or age.strip() == ""
-        or guardian_name.strip() == ""
-        or address.strip() == ""
+        student_id == ""
+        or name == ""
+        or phone_number == ""
+        or email == ""
+        or course == ""
+        or age == ""
+        or guardian_name == ""
+        or address == ""
     ):
         messagebox.showerror("Error", "Please fill all fields.")
+        return
+
+    if not is_valid_name(name):
+        messagebox.showerror("Error", "Name must contain only letters.")
+        return
+
+    if not is_valid_phone(phone_number):
+        messagebox.showerror("Error", "Phone number must contain exactly 10 digits.")
+        return
+
+    if not is_valid_email(email):
+        messagebox.showerror("Error", "Please enter a valid email address.")
+        return
+
+    if not is_valid_age(age):
+        messagebox.showerror("Error", "Age must be a valid positive number.")
+        return
+
+    if not is_valid_name(guardian_name):
+        messagebox.showerror("Error", "Guardian name must contain only letters.")
         return
 
     existing_student = find_student_db(student_id)
@@ -72,15 +93,6 @@ def add_student():
     )
 
     add_student_db(student)
-
-    print(student_id)
-    print(name)
-    print(phone_number)
-    print(email)
-    print(course)
-    print(age)
-    print(guardian_name)
-    print(address)
 
     messagebox.showinfo("Success", "Student added successfully!")
 
@@ -136,6 +148,10 @@ def show_search_student():
     view_frame.pack_forget()
     update_frame.pack_forget()
     delete_frame.pack_forget()
+
+    search_id_entry.delete(0, tk.END)
+    search_details_frame.pack_forget()
+
     search_frame.pack(fill="both", expand=True)
 
 
@@ -267,24 +283,44 @@ def delete_student():
 def update_student():
     student_id = current_update_student_id
 
-    name = update_name_entry.get()
-    phone_number = update_phone_entry.get()
-    email = update_email_entry.get()
-    course = update_course_entry.get()
-    age = update_age_entry.get()
-    guardian_name = update_guardian_entry.get()
-    address = update_address_entry.get()
+    name = update_name_entry.get().strip()
+    phone_number = update_phone_entry.get().strip()
+    email = update_email_entry.get().strip()
+    course = update_course_entry.get().strip()
+    age = update_age_entry.get().strip()
+    guardian_name = update_guardian_entry.get().strip()
+    address = update_address_entry.get().strip()
 
     if (
-        name.strip() == ""
-        or phone_number.strip() == ""
-        or email.strip() == ""
-        or course.strip() == ""
-        or age.strip() == ""
-        or guardian_name.strip() == ""
-        or address.strip() == ""
+        name == ""
+        or phone_number == ""
+        or email == ""
+        or course == ""
+        or age == ""
+        or guardian_name == ""
+        or address == ""
     ):
         messagebox.showerror("Error", "Please fill all fields.")
+        return
+
+    if not is_valid_name(name):
+        messagebox.showerror("Error", "Name must contain only letters.")
+        return
+
+    if not is_valid_phone(phone_number):
+        messagebox.showerror("Error", "Phone number must contain exactly 10 digits.")
+        return
+
+    if not is_valid_email(email):
+        messagebox.showerror("Error", "Please enter a valid email address.")
+        return
+
+    if not is_valid_age(age):
+        messagebox.showerror("Error", "Age must be a valid positive number.")
+        return
+
+    if not is_valid_name(guardian_name):
+        messagebox.showerror("Error", "Guardian name must contain only letters.")
         return
 
     student = Student(
@@ -302,10 +338,15 @@ def update_student():
 
     messagebox.showinfo("Success", "Student updated successfully!")
 
+    update_form_frame.pack_forget()
+
+    update_id_entry.config(state="normal")
+    update_id_entry.delete(0, tk.END)
+
 
 def search_student():
 
-    search_result_label.config(text="")
+    search_details_frame.pack_forget()
 
     student_id = search_id_entry.get().strip()
 
@@ -319,16 +360,16 @@ def search_student():
         messagebox.showerror("Error", "Student not found.")
         return
 
-    search_result_label.config(text=f"""
-Student ID: {student.student_id}
-Name: {student.name}
-Phone Number: {student.phone_number}
-Email: {student.email}
-Course: {student.course}
-Age: {student.age}
-Guardian Name: {student.guardian_name}
-Address: {student.address}
-""")
+    search_student_id_value.config(text=student.student_id)
+    search_name_value.config(text=student.name)
+    search_phone_value.config(text=student.phone_number)
+    search_email_value.config(text=student.email)
+    search_course_value.config(text=student.course)
+    search_age_value.config(text=student.age)
+    search_guardian_value.config(text=student.guardian_name)
+    search_address_value.config(text=student.address)
+
+    search_details_frame.pack(pady=20)
 
 
 form_frame = tk.Frame(content_frame)
@@ -655,14 +696,137 @@ search_action_button = tk.Button(
 
 search_action_button.pack(pady=10)
 
-search_result_label = tk.Label(
+search_details_frame = tk.Frame(
     search_frame,
-    text="",
     bg="white",
-    justify="left",
 )
 
-search_result_label.pack(pady=20)
+search_student_id_label = tk.Label(
+    search_details_frame,
+    text="Student ID:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+search_student_id_label.grid(row=0, column=0, sticky="w", padx=10, pady=5)
+
+search_student_id_value = tk.Label(
+    search_details_frame,
+    text="",
+    bg="white",
+)
+search_student_id_value.grid(row=0, column=1, sticky="w", padx=10, pady=5)
+
+
+search_name_label = tk.Label(
+    search_details_frame,
+    text="Name:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+search_name_label.grid(row=1, column=0, sticky="w", padx=10, pady=5)
+
+search_name_value = tk.Label(
+    search_details_frame,
+    text="",
+    bg="white",
+)
+search_name_value.grid(row=1, column=1, sticky="w", padx=10, pady=5)
+
+
+search_phone_label = tk.Label(
+    search_details_frame,
+    text="Phone Number:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+search_phone_label.grid(row=2, column=0, sticky="w", padx=10, pady=5)
+
+search_phone_value = tk.Label(
+    search_details_frame,
+    text="",
+    bg="white",
+)
+search_phone_value.grid(row=2, column=1, sticky="w", padx=10, pady=5)
+
+
+search_email_label = tk.Label(
+    search_details_frame,
+    text="Email:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+search_email_label.grid(row=3, column=0, sticky="w", padx=10, pady=5)
+
+search_email_value = tk.Label(
+    search_details_frame,
+    text="",
+    bg="white",
+)
+search_email_value.grid(row=3, column=1, sticky="w", padx=10, pady=5)
+
+
+search_course_label = tk.Label(
+    search_details_frame,
+    text="Course:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+search_course_label.grid(row=4, column=0, sticky="w", padx=10, pady=5)
+
+search_course_value = tk.Label(
+    search_details_frame,
+    text="",
+    bg="white",
+)
+search_course_value.grid(row=4, column=1, sticky="w", padx=10, pady=5)
+
+
+search_age_label = tk.Label(
+    search_details_frame,
+    text="Age:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+search_age_label.grid(row=5, column=0, sticky="w", padx=10, pady=5)
+
+search_age_value = tk.Label(
+    search_details_frame,
+    text="",
+    bg="white",
+)
+search_age_value.grid(row=5, column=1, sticky="w", padx=10, pady=5)
+
+
+search_guardian_label = tk.Label(
+    search_details_frame,
+    text="Guardian Name:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+search_guardian_label.grid(row=6, column=0, sticky="w", padx=10, pady=5)
+
+search_guardian_value = tk.Label(
+    search_details_frame,
+    text="",
+    bg="white",
+)
+search_guardian_value.grid(row=6, column=1, sticky="w", padx=10, pady=5)
+
+
+search_address_label = tk.Label(
+    search_details_frame,
+    text="Address:",
+    bg="white",
+    font=("Arial", 10, "bold"),
+)
+search_address_label.grid(row=7, column=0, sticky="w", padx=10, pady=5)
+
+search_address_value = tk.Label(
+    search_details_frame,
+    text="",
+    bg="white",
+)
+search_address_value.grid(row=7, column=1, sticky="w", padx=10, pady=5)
 
 view_title = tk.Label(
     view_frame,
