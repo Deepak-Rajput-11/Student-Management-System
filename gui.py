@@ -20,18 +20,26 @@ title_label = tk.Label(
     root,
     text="Student Management System",
     font=("Arial", 24, "bold"),
+    bg="#2c3e50",
+    fg="white",
+    pady=15,
 )
-title_label.pack(pady=20)
+title_label.pack(fill="x")
+
+
 main_frame = tk.Frame(root)
 main_frame.pack(fill="both", expand=True)
 
-sidebar_frame = tk.Frame(main_frame, width=200, bg="lightgray")
+sidebar_frame = tk.Frame(main_frame, width=200, bg="#204263")
 sidebar_frame.pack(side="left", fill="y")
 
 content_frame = tk.Frame(main_frame, bg="white")
 content_frame.pack(side="right", fill="both", expand=True)
 
 
+# =========================
+# ADD STUDENT FUNCTIONS
+# =========================
 def add_student():
     student_id = id_entry.get().strip()
     name = name_entry.get().strip()
@@ -114,6 +122,9 @@ def show_add_student():
     form_frame.pack(pady=20)
 
 
+# =========================
+# VIEW STUDENTS FUNCTIONS
+# =========================
 def view_students():
     form_frame.pack_forget()
     search_frame.pack_forget()
@@ -143,6 +154,7 @@ def view_students():
         )
 
 
+# Show Search Student screen
 def show_search_student():
     form_frame.pack_forget()
     view_frame.pack_forget()
@@ -155,6 +167,7 @@ def show_search_student():
     search_frame.pack(fill="both", expand=True)
 
 
+# Show Update Student screen
 def show_update_student():
     form_frame.pack_forget()
     view_frame.pack_forget()
@@ -171,6 +184,7 @@ def show_update_student():
 current_update_student_id = None
 
 
+# Show Delete Student screen
 def show_delete_student():
     form_frame.pack_forget()
     view_frame.pack_forget()
@@ -185,6 +199,7 @@ def show_delete_student():
     delete_frame.pack(fill="both", expand=True)
 
 
+# Find student to update
 def find_update_student():
     global current_update_student_id
 
@@ -229,6 +244,7 @@ def find_update_student():
     update_form_frame.pack(pady=10)
 
 
+# Find student to delete
 def find_delete_student():
     delete_details_frame.pack_forget()
     delete_action_button.pack_forget()
@@ -259,6 +275,7 @@ def find_delete_student():
     delete_action_button.pack(pady=10)
 
 
+# Delete selected student
 def delete_student():
     student_id = delete_id_entry.get().strip()
 
@@ -280,6 +297,7 @@ def delete_student():
     delete_id_entry.delete(0, tk.END)
 
 
+# Save updated student details
 def update_student():
     student_id = current_update_student_id
 
@@ -372,7 +390,14 @@ def search_student():
     search_details_frame.pack(pady=20)
 
 
-form_frame = tk.Frame(content_frame)
+# =========================
+# GUI FRAMES AND WIDGETS
+# =========================
+
+# =========================
+# MAIN GUI FRAMES
+# =========================
+form_frame = tk.Frame(content_frame, bg="white")
 form_frame.pack(pady=20)
 
 view_frame = tk.Frame(content_frame, bg="white")
@@ -380,7 +405,9 @@ search_frame = tk.Frame(content_frame, bg="white")
 update_frame = tk.Frame(content_frame, bg="white")
 delete_frame = tk.Frame(content_frame, bg="white")
 
-
+# =========================
+# DELETE STUDENT GUI
+# =========================
 delete_title = tk.Label(
     delete_frame,
     text="Delete Student",
@@ -405,6 +432,7 @@ find_delete_button = tk.Button(
     delete_frame,
     text="Find Student",
     command=find_delete_student,
+    width=15,
 )
 
 find_delete_button.pack(pady=10)
@@ -544,9 +572,15 @@ delete_action_button = tk.Button(
     delete_frame,
     text="Delete Student",
     command=delete_student,
+    width=15,
+    bg="#c0392b",
+    fg="white",
+    font=("Arial", 10, "bold"),
 )
 
-
+# =========================
+# UPDATE STUDENT GUI
+# =========================
 update_title = tk.Label(
     update_frame,
     text="Update Student",
@@ -569,6 +603,7 @@ find_update_button = tk.Button(
     update_frame,
     text="Find Student",
     command=find_update_student,
+    width=15,
 )
 
 find_update_button.pack(pady=10)
@@ -584,7 +619,7 @@ update_name_label = tk.Label(
     text="Name:",
     bg="white",
 )
-update_name_label.grid(row=0, column=0, padx=10, pady=5)
+update_name_label.grid(row=0, column=0, sticky="w", padx=10, pady=5)
 
 update_name_entry = tk.Entry(update_form_frame)
 update_name_entry.grid(row=0, column=1, padx=10, pady=5)
@@ -595,7 +630,7 @@ update_phone_label = tk.Label(
     text="Phone Number:",
     bg="white",
 )
-update_phone_label.grid(row=1, column=0, padx=10, pady=5)
+update_phone_label.grid(row=1, column=0, sticky="w", padx=10, pady=5)
 
 update_phone_entry = tk.Entry(update_form_frame)
 update_phone_entry.grid(row=1, column=1, padx=10, pady=5)
@@ -605,7 +640,7 @@ update_email_label = tk.Label(
     text="Email:",
     bg="white",
 )
-update_email_label.grid(row=2, column=0, padx=10, pady=5)
+update_email_label.grid(row=2, column=0, sticky="w", padx=10, pady=5)
 
 update_email_entry = tk.Entry(update_form_frame)
 update_email_entry.grid(row=2, column=1, padx=10, pady=5)
@@ -616,7 +651,7 @@ update_course_label = tk.Label(
     text="Course:",
     bg="white",
 )
-update_course_label.grid(row=3, column=0, padx=10, pady=5)
+update_course_label.grid(row=3, column=0, sticky="w", padx=10, pady=5)
 
 update_course_entry = tk.Entry(update_form_frame)
 update_course_entry.grid(row=3, column=1, padx=10, pady=5)
@@ -627,7 +662,7 @@ update_age_label = tk.Label(
     text="Age:",
     bg="white",
 )
-update_age_label.grid(row=4, column=0, padx=10, pady=5)
+update_age_label.grid(row=4, column=0, sticky="w", padx=10, pady=5)
 
 update_age_entry = tk.Entry(update_form_frame)
 update_age_entry.grid(row=4, column=1, padx=10, pady=5)
@@ -638,7 +673,7 @@ update_guardian_label = tk.Label(
     text="Guardian Name:",
     bg="white",
 )
-update_guardian_label.grid(row=5, column=0, padx=10, pady=5)
+update_guardian_label.grid(row=5, column=0, sticky="w", padx=10, pady=5)
 
 update_guardian_entry = tk.Entry(update_form_frame)
 update_guardian_entry.grid(row=5, column=1, padx=10, pady=5)
@@ -649,7 +684,7 @@ update_address_label = tk.Label(
     text="Address:",
     bg="white",
 )
-update_address_label.grid(row=6, column=0, padx=10, pady=5)
+update_address_label.grid(row=6, column=0, sticky="w", padx=10, pady=5)
 
 update_address_entry = tk.Entry(update_form_frame)
 update_address_entry.grid(row=6, column=1, padx=10, pady=5)
@@ -658,6 +693,7 @@ update_action_button = tk.Button(
     update_form_frame,
     text="Update Student",
     command=update_student,
+    width=15,
 )
 
 update_action_button.grid(
@@ -667,7 +703,9 @@ update_action_button.grid(
     pady=15,
 )
 
-
+# =========================
+# SEARCH STUDENT GUI
+# =========================
 search_title = tk.Label(
     search_frame,
     text="Search Student",
@@ -692,6 +730,7 @@ search_action_button = tk.Button(
     search_frame,
     text="Search",
     command=search_student,
+    width=15,
 )
 
 search_action_button.pack(pady=10)
@@ -828,6 +867,10 @@ search_address_value = tk.Label(
 )
 search_address_value.grid(row=7, column=1, sticky="w", padx=10, pady=5)
 
+
+# =========================
+# VIEW STUDENTS GUI
+# =========================
 view_title = tk.Label(
     view_frame,
     text="Student Records",
@@ -839,12 +882,24 @@ view_title.pack(pady=20)
 table_frame = tk.Frame(view_frame)
 table_frame.pack(fill="both", expand=True, padx=20, pady=10)
 
+style = ttk.Style()
+
+style.configure(
+    "Treeview",
+    font=("Arial", 10),
+    rowheight=28,
+)
+
+style.configure(
+    "Treeview.Heading",
+    font=("Arial", 10, "bold"),
+)
+
 student_table = ttk.Treeview(
     table_frame,
     columns=("ID", "Name", "Phone", "Email", "Course", "Age", "Guardian", "Address"),
     show="headings",
 )
-
 student_table.heading("ID", text="Student ID")
 student_table.heading("Name", text="Name")
 student_table.heading("Phone", text="Phone Number")
@@ -875,80 +930,104 @@ horizontal_scrollbar.pack(side="bottom", fill="x")
 
 student_table.configure(xscrollcommand=horizontal_scrollbar.set)
 
+# =========================
+# ADD STUDENT GUI
+# =========================
+add_title = tk.Label(
+    form_frame,
+    text="Add Student",
+    font=("Arial", 20, "bold"),
+    bg="white",
+)
 
-id_label = tk.Label(form_frame, text="Student ID:")
-id_label.grid(row=0, column=0, padx=10, pady=5)
+add_title.grid(
+    row=0,
+    column=0,
+    columnspan=2,
+    pady=20,
+)
+
+id_label = tk.Label(form_frame, text="Student ID:", bg="white")
+id_label.grid(row=1, column=0, sticky="w", padx=10, pady=5)
 
 id_entry = tk.Entry(form_frame)
-id_entry.grid(row=0, column=1, padx=10, pady=5)
+id_entry.grid(row=1, column=1, padx=10, pady=5)
 
-name_label = tk.Label(form_frame, text="Name:")
-name_label.grid(row=1, column=0, padx=10, pady=5)
+name_label = tk.Label(form_frame, text="Name:", bg="white")
+name_label.grid(row=2, column=0, sticky="w", padx=10, pady=5)
 
 name_entry = tk.Entry(form_frame)
-name_entry.grid(row=1, column=1, padx=10, pady=5)
+name_entry.grid(row=2, column=1, padx=10, pady=5)
 
-phone_label = tk.Label(form_frame, text="Phone Number:")
-phone_label.grid(row=2, column=0, padx=10, pady=5)
+phone_label = tk.Label(form_frame, text="Phone Number:", bg="white")
+phone_label.grid(row=3, column=0, sticky="w", padx=10, pady=5)
 
 phone_entry = tk.Entry(form_frame)
-phone_entry.grid(row=2, column=1, padx=10, pady=5)
+phone_entry.grid(row=3, column=1, padx=10, pady=5)
 
-email_label = tk.Label(form_frame, text="Email:")
-email_label.grid(row=3, column=0, padx=10, pady=5)
+email_label = tk.Label(form_frame, text="Email:", bg="white")
+email_label.grid(row=4, column=0, sticky="w", padx=10, pady=5)
 
 email_entry = tk.Entry(form_frame)
-email_entry.grid(row=3, column=1, padx=10, pady=5)
+email_entry.grid(row=4, column=1, padx=10, pady=5)
 
-
-course_label = tk.Label(form_frame, text="Course:")
-course_label.grid(row=4, column=0, padx=10, pady=5)
+course_label = tk.Label(form_frame, text="Course:", bg="white")
+course_label.grid(row=5, column=0, sticky="w", padx=10, pady=5)
 
 course_entry = tk.Entry(form_frame)
-course_entry.grid(row=4, column=1, padx=10, pady=5)
+course_entry.grid(row=5, column=1, padx=10, pady=5)
 
-
-age_label = tk.Label(form_frame, text="Age:")
-age_label.grid(row=5, column=0, padx=10, pady=5)
+age_label = tk.Label(form_frame, text="Age:", bg="white")
+age_label.grid(row=6, column=0, sticky="w", padx=10, pady=5)
 
 age_entry = tk.Entry(form_frame)
-age_entry.grid(row=5, column=1, padx=10, pady=5)
+age_entry.grid(row=6, column=1, padx=10, pady=5)
 
-
-guardian_label = tk.Label(form_frame, text="Guardian Name:")
-guardian_label.grid(row=6, column=0, padx=10, pady=5)
+guardian_label = tk.Label(form_frame, text="Guardian Name:", bg="white")
+guardian_label.grid(row=7, column=0, sticky="w", padx=10, pady=5)
 
 guardian_entry = tk.Entry(form_frame)
-guardian_entry.grid(row=6, column=1, padx=10, pady=5)
+guardian_entry.grid(row=7, column=1, padx=10, pady=5)
 
-
-address_label = tk.Label(form_frame, text="Address:")
-address_label.grid(row=7, column=0, padx=10, pady=5)
+address_label = tk.Label(form_frame, text="Address:", bg="white")
+address_label.grid(row=8, column=0, sticky="w", padx=10, pady=5)
 
 address_entry = tk.Entry(form_frame)
-address_entry.grid(row=7, column=1, padx=10, pady=5)
+address_entry.grid(row=8, column=1, padx=10, pady=5)
 
 save_button = tk.Button(
     form_frame,
     text="Save Student",
     command=add_student,
+    width=15,
 )
 
-save_button.grid(row=8, column=0, columnspan=2, pady=15)
+save_button.grid(row=9, column=0, columnspan=2, pady=15)
 
+
+# =========================
+# SIDEBAR BUTTONS
+# =========================
 add_button = tk.Button(
     sidebar_frame,
     text="Add Student",
     command=show_add_student,
+    width=15,
+    bg="#34495e",
+    fg="white",
+    font=("Arial", 10, "bold"),
 )
 
-add_button.pack(pady=10)
-
+add_button.pack(pady=(30, 10))
 
 view_button = tk.Button(
     sidebar_frame,
     text="View Students",
     command=view_students,
+    width=15,
+    bg="#34495e",
+    fg="white",
+    font=("Arial", 10, "bold"),
 )
 
 view_button.pack(pady=10)
@@ -957,6 +1036,10 @@ search_button = tk.Button(
     sidebar_frame,
     text="Search Student",
     command=show_search_student,
+    width=15,
+    bg="#34495e",
+    fg="white",
+    font=("Arial", 10, "bold"),
 )
 
 search_button.pack(pady=10)
@@ -965,13 +1048,22 @@ update_button = tk.Button(
     sidebar_frame,
     text="Update Student",
     command=show_update_student,
+    width=15,
+    bg="#34495e",
+    fg="white",
+    font=("Arial", 10, "bold"),
 )
+
 update_button.pack(pady=10)
 
 delete_button = tk.Button(
     sidebar_frame,
     text="Delete Student",
     command=show_delete_student,
+    width=15,
+    bg="#34495e",
+    fg="white",
+    font=("Arial", 10, "bold"),
 )
 
 delete_button.pack(pady=10)
