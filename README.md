@@ -417,6 +417,20 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Added section comments in `gui.py` to make the code easier to navigate.
 - Tested Add and Update validation with valid and invalid inputs.
 
+## Day 29 - GUI Design and Polish
+
+- Improved the overall GUI appearance and consistency.
+- Added an "Add Student" screen title.
+- Improved alignment of Add and Update Student forms.
+- Standardized sidebar and action button widths.
+- Improved sidebar spacing and navigation appearance.
+- Added a professional dark sidebar and application header.
+- Improved the Student Records table with bold headings and better row spacing.
+- Added consistent white backgrounds across content screens.
+- Styled the Delete Student action button as a warning action.
+- Performed complete CRUD testing through the GUI.
+- Verified Add, View, Search, Update, and Delete operations are working correctly.
+
 ## Technologies
 
 - Python
