@@ -431,6 +431,21 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Performed complete CRUD testing through the GUI.
 - Verified Add, View, Search, Update, and Delete operations are working correctly.
 
+## Day 30 - Final Testing and Bug Fixes
+
+- Performed complete CRUD and edge-case testing.
+- Tested Add, View, Search, Update, and Delete operations.
+- Improved Add Student form so fields reset when reopening the screen.
+- Added automatic focus to the Student ID field after adding a student.
+- Improved email validation to handle invalid email formats and edge cases.
+- Tested SQLite data persistence after restarting the application.
+- Tested the application with more than 20 student records.
+- Added a vertical scrollbar to the Student Records table.
+- Verified both horizontal and vertical table scrolling.
+- Reset the Student Records table to the top when reopening View Students.
+- Tested screen navigation to prevent stale data from appearing.
+- Verified the complete application is working correctly after all fixes.
+
 ## Technologies
 
 - Python
