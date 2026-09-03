@@ -3,12 +3,19 @@ def is_valid_phone(phone_number):
 
 
 def is_valid_email(email):
+    if email.count("@") != 1:
+        return False
+
+    username, domain = email.split("@")
+
     return (
-        "@" in email
-        and "." in email
-        and not email.startswith("@")
-        and not email.endswith(".")
-        and email.index("@") < email.rindex(".")
+        username != ""
+        and domain != ""
+        and "." in domain
+        and not username.startswith(".")
+        and not username.endswith(".")
+        and not domain.startswith(".")
+        and not domain.endswith(".")
     )
 
 
