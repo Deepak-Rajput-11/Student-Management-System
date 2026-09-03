@@ -113,13 +113,27 @@ def add_student():
     guardian_entry.delete(0, tk.END)
     address_entry.delete(0, tk.END)
 
+    id_entry.focus_set()
+
 
 def show_add_student():
     view_frame.pack_forget()
     search_frame.pack_forget()
     update_frame.pack_forget()
     delete_frame.pack_forget()
+
+    id_entry.delete(0, tk.END)
+    name_entry.delete(0, tk.END)
+    phone_entry.delete(0, tk.END)
+    email_entry.delete(0, tk.END)
+    course_entry.delete(0, tk.END)
+    age_entry.delete(0, tk.END)
+    guardian_entry.delete(0, tk.END)
+    address_entry.delete(0, tk.END)
+
     form_frame.pack(pady=20)
+
+    id_entry.focus_set()
 
 
 # =========================
@@ -152,6 +166,8 @@ def view_students():
                 student.address,
             ),
         )
+
+    student_table.yview_moveto(0)
 
 
 # Show Search Student screen
@@ -918,7 +934,13 @@ student_table.column("Age", width=60)
 student_table.column("Guardian", width=130)
 student_table.column("Address", width=180)
 
-student_table.pack(side="top", fill="both", expand=True)
+vertical_scrollbar = ttk.Scrollbar(
+    table_frame,
+    orient="vertical",
+    command=student_table.yview,
+)
+
+vertical_scrollbar.pack(side="right", fill="y")
 
 horizontal_scrollbar = ttk.Scrollbar(
     table_frame,
@@ -928,7 +950,12 @@ horizontal_scrollbar = ttk.Scrollbar(
 
 horizontal_scrollbar.pack(side="bottom", fill="x")
 
-student_table.configure(xscrollcommand=horizontal_scrollbar.set)
+student_table.pack(side="left", fill="both", expand=True)
+
+student_table.configure(
+    xscrollcommand=horizontal_scrollbar.set,
+    yscrollcommand=vertical_scrollbar.set,
+)
 
 # =========================
 # ADD STUDENT GUI
