@@ -1,3 +1,8 @@
 __pycache__/
 *.pyc
 students.db
+
+# PyInstaller generated files
+build/
+dist/
+*.spec
