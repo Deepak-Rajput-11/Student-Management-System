@@ -1,10 +1,133 @@
 # Student Management System
 
-## Description
+A desktop-based Student Management System built using **Python, Tkinter, and SQLite**. The application provides a graphical interface for managing student records and supports complete CRUD operations with input validation and persistent database storage.
 
-A Python-based Student Management System built from scratch as part of my Software Engineering learning journey. This project focuses on applying Object-Oriented Programming (OOP), Python fundamentals, and software development best practices.
+## Features
 
-## Features Completed
+- Add new student records
+- View all students in a structured table
+- Search students using Student ID
+- Update existing student information
+- Delete students with confirmation
+- Input validation for student details
+- Duplicate Student ID prevention
+- Persistent data storage using SQLite
+- Single-window GUI navigation
+- Horizontal and vertical scrolling for student records
+
+## Technologies Used
+
+- **Python** — Core programming language
+- **Tkinter** — Graphical User Interface
+- **SQLite** — Local database and persistent storage
+- **OOP** — Student class and object-based data handling
+- **Git & GitHub** — Version control and project hosting
+
+## Screenshots
+
+### Add Student
+
+![Add Student](screenshots/add-student.png)
+
+### View Students
+
+![View Students](screenshots/view-students.png)
+
+### Search Student
+
+![Search Student](screenshots/search-student.png)
+
+### Delete Student
+
+![Delete Student](screenshots/delete-student.png)
+
+## Project Structure
+
+```text
+Student-Management-System/
+│
+├── gui.py
+│   └── Tkinter GUI and user interaction
+│
+├── student.py
+│   └── Student class
+│
+├── database.py
+│   └── SQLite database operations
+│
+├── validation.py
+│   └── Reusable input validation
+│
+├── main.py
+│   └── Terminal version of the application
+│
+├── screenshots/
+│   └── Project screenshots
+│
+├── students.db
+│   └── Local SQLite database (ignored by Git)
+│
+├── README.md
+└── .gitignore
+```
+
+## How to Run
+
+1. Make sure Python is installed on your system.
+2. Clone or download this repository.
+3. Open the project folder.
+4. Run:
+
+```bash
+python gui.py
+```
+
+The SQLite database is created locally when the application runs.
+
+## Application Flow
+
+```text
+User
+ │
+ ▼
+Tkinter GUI
+ │
+ ├── Input Validation
+ │
+ ▼
+Student Object
+ │
+ ▼
+Database Functions
+ │
+ ▼
+SQLite Database
+```
+
+## What I Learned
+
+Through this project, I practiced and implemented:
+
+- Object-Oriented Programming in Python
+- Building desktop interfaces with Tkinter
+- SQLite database integration
+- SQL CRUD operations
+- Input validation and error handling
+- Event-driven programming
+- Organizing a Python project into separate modules
+- Git and GitHub version control
+- Testing and debugging a complete application
+
+## Status
+
+**Completed** ✅
+
+The application supports complete CRUD functionality, input validation, SQLite persistence, and a Tkinter graphical interface.
+
+## Development Journey
+
+<details>
+<summary>View Day 1–30 Development Log</summary>
 
 ### Day 1
 
@@ -446,15 +569,4 @@ A Python-based Student Management System built from scratch as part of my Softwa
 - Tested screen navigation to prevent stale data from appearing.
 - Verified the complete application is working correctly after all fixes.
 
-## Technologies
-
-- Python
-- Object-Oriented Programming(OOP)
-
-## Status
-
-- Terminal version completed
-- SQLite database integration completed
-- Full CRUD operations completed
-- GUI development in progress
-- Project in Progress
+</details>
